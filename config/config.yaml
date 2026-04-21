@@ -1,0 +1,18 @@
+data:
+  url: "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+  raw_dir: "./data/raw"
+  processed_dir: "./data/processed"
+  test_size: 0.2
+  val_size: 0.2
+  random_state: 42
+
+training:
+  batch_size: 64
+  lr: 0.001
+  num_epochs: 10
+  num_workers: 0
+  device: "cpu"
+
+model:
+  n_classes: 10
+  save_path: "artifacts/best_model.pth"

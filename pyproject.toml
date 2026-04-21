@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "ml-lab1-final"
+version = "0.1.0"
+description = "CIFAR-10 training pipeline for ML Engineering Lab 1"
+authors = ["Olena Kirieva <Olena.Kirieva@cs.khpi.edu.ua>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+torch = "2.2.2"
+torchvision = "0.17.2"
+tqdm = "^4.66.0"
+matplotlib = "^3.8.0"
+numpy = "^1.26.0"
+pyyaml = "^6.0.1"
+pandas = "^2.2.0"
+scikit-learn = "^1.4.0"
+pillow = "^10.2.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.9.0"
+ruff = "^0.3.0"
+black = "^24.2.0"
+isort = "^5.13.0"
+types-pyyaml = "^6.0.12.20240311"
+types-tqdm = "^4.66.0.20240106"
+types-requests = "^2.31.0.20240311"
+pandas-stubs = "^2.2.0.240303"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
