@@ -2,12 +2,12 @@ import torch
 from src.utils import setup_logging, load_config
 from src.data import process_data, create_data_loader
 from src.model import SimpleCNN
-from src.engine import train_model, test_model
+from src.engine import train_model, test_model, save_metrics_plot
 
 def main() -> None:
     setup_logging()
     config = load_config()
-    device = torch.device("cpu") # Baseline на CPU
+    device = torch.device("cpu")
 
     # 1. Data
     train_df, val_df, test_df = process_data(config)
@@ -18,10 +18,15 @@ def main() -> None:
     # 2. Model
     model = SimpleCNN(n_classes=config['model']['n_classes']).to(device)
 
-    # 3. Train
-    best_model_path = train_model(model, train_loader, val_loader, config, device)
+    # 3. Train 
+    best_model_path, train_losses, val_accs = train_model(
+        model, train_loader, val_loader, config, device
+    )
 
-    # 4. Test
+    # 4. Візуалізація
+    save_metrics_plot(train_losses, val_accs, "artifacts/baseline_metrics.png")
+
+    # 5. Test 
     model.load_state_dict(torch.load(best_model_path))
     test_model(model, test_loader, device)
 

@@ -1,6 +1,6 @@
 data/
-artifacts/
 __pycache__/
-*.log
 .venv/
 .poetry/
+.mypy_cache/
+.ruff_cache/
