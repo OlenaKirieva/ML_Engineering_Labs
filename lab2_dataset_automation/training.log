@@ -1,0 +1,141 @@
+2026-04-22 13:25:35,701 [INFO] __main__: >>> Starting Lab 2 Experiment
+2026-04-22 13:25:35,701 [INFO] __main__: Configuration: Selected Batches = ['0', '1']
+2026-04-22 13:25:35,702 [INFO] src.data_utils: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-22 13:27:33,022 [INFO] src.data_utils: Batches selected: ['0', '1']
+2026-04-22 13:27:33,022 [INFO] src.data_utils: Final sizes - Train: 15360, Val: 3840, Test: 12000
+2026-04-22 13:27:33,048 [INFO] src.engine: >>> Training process started.
+2026-04-22 13:29:13,964 [INFO] src.engine: Epoch 1/10 | Loss: 1.6480 | Val Acc: 0.5076
+2026-04-22 13:29:13,975 [INFO] src.engine: Best model artifact saved with accuracy: 0.5076
+2026-04-22 13:29:25,666 [INFO] src.engine: Epoch 2/10 | Loss: 1.3168 | Val Acc: 0.5617
+2026-04-22 13:29:25,680 [INFO] src.engine: Best model artifact saved with accuracy: 0.5617
+2026-04-22 13:29:37,596 [INFO] src.engine: Epoch 3/10 | Loss: 1.1677 | Val Acc: 0.5904
+2026-04-22 13:29:37,600 [INFO] src.engine: Best model artifact saved with accuracy: 0.5904
+2026-04-22 13:29:50,732 [INFO] src.engine: Epoch 4/10 | Loss: 1.0769 | Val Acc: 0.6250
+2026-04-22 13:29:50,736 [INFO] src.engine: Best model artifact saved with accuracy: 0.6250
+2026-04-22 13:30:03,855 [INFO] src.engine: Epoch 5/10 | Loss: 1.0032 | Val Acc: 0.6312
+2026-04-22 13:30:03,860 [INFO] src.engine: Best model artifact saved with accuracy: 0.6312
+2026-04-22 13:30:16,869 [INFO] src.engine: Epoch 6/10 | Loss: 0.9411 | Val Acc: 0.6513
+2026-04-22 13:30:16,873 [INFO] src.engine: Best model artifact saved with accuracy: 0.6513
+2026-04-22 13:30:29,970 [INFO] src.engine: Epoch 7/10 | Loss: 0.8894 | Val Acc: 0.6430
+2026-04-22 13:30:42,960 [INFO] src.engine: Epoch 8/10 | Loss: 0.8435 | Val Acc: 0.6500
+2026-04-22 13:30:56,009 [INFO] src.engine: Epoch 9/10 | Loss: 0.8063 | Val Acc: 0.6458
+2026-04-22 13:31:09,103 [INFO] src.engine: Epoch 10/10 | Loss: 0.7423 | Val Acc: 0.6484
+2026-04-22 13:31:09,103 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 13:31:10,088 [INFO] src.engine: Metrics plot saved to artifacts/metrics_2_batches.png
+2026-04-22 13:31:10,088 [INFO] __main__: Loading best model for final evaluation on static test set...
+2026-04-22 13:31:10,108 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 13:32:12,647 [INFO] src.engine: Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    airplane       0.66      0.70      0.68      1181
+  automobile       0.77      0.74      0.75      1188
+        bird       0.54      0.50      0.52      1232
+         cat       0.45      0.56      0.50      1274
+        deer       0.56      0.59      0.58      1179
+         dog       0.62      0.42      0.50      1230
+        frog       0.70      0.78      0.73      1123
+       horse       0.74      0.73      0.74      1217
+        ship       0.74      0.79      0.77      1189
+       truck       0.76      0.70      0.73      1187
+
+    accuracy                           0.65     12000
+   macro avg       0.66      0.65      0.65     12000
+weighted avg       0.65      0.65      0.65     12000
+
+2026-04-22 13:32:12,647 [INFO] __main__: >>> Experiment finished successfully.
+2026-04-22 13:32:46,578 [INFO] __main__: >>> Starting Lab 2 Experiment
+2026-04-22 13:32:46,579 [INFO] __main__: Configuration: Selected Batches = ['0']
+2026-04-22 13:32:46,579 [INFO] src.data_utils: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-22 13:33:37,112 [INFO] src.data_utils: Batches selected: ['0']
+2026-04-22 13:33:37,112 [INFO] src.data_utils: Final sizes - Train: 7680, Val: 1920, Test: 12000
+2026-04-22 13:33:37,118 [INFO] src.engine: >>> Training process started.
+2026-04-22 13:33:42,984 [INFO] src.engine: Epoch 1/10 | Loss: 1.7771 | Val Acc: 0.4391
+2026-04-22 13:33:42,988 [INFO] src.engine: Best model artifact saved with accuracy: 0.4391
+2026-04-22 13:33:48,988 [INFO] src.engine: Epoch 2/10 | Loss: 1.4271 | Val Acc: 0.5323
+2026-04-22 13:33:48,992 [INFO] src.engine: Best model artifact saved with accuracy: 0.5323
+2026-04-22 13:33:54,950 [INFO] src.engine: Epoch 3/10 | Loss: 1.3143 | Val Acc: 0.5339
+2026-04-22 13:33:54,954 [INFO] src.engine: Best model artifact saved with accuracy: 0.5339
+2026-04-22 13:34:00,786 [INFO] src.engine: Epoch 4/10 | Loss: 1.2053 | Val Acc: 0.5474
+2026-04-22 13:34:00,790 [INFO] src.engine: Best model artifact saved with accuracy: 0.5474
+2026-04-22 13:34:06,881 [INFO] src.engine: Epoch 5/10 | Loss: 1.1118 | Val Acc: 0.5781
+2026-04-22 13:34:06,886 [INFO] src.engine: Best model artifact saved with accuracy: 0.5781
+2026-04-22 13:34:13,318 [INFO] src.engine: Epoch 6/10 | Loss: 1.0351 | Val Acc: 0.5875
+2026-04-22 13:34:13,323 [INFO] src.engine: Best model artifact saved with accuracy: 0.5875
+2026-04-22 13:34:20,833 [INFO] src.engine: Epoch 7/10 | Loss: 0.9522 | Val Acc: 0.6052
+2026-04-22 13:34:20,837 [INFO] src.engine: Best model artifact saved with accuracy: 0.6052
+2026-04-22 13:34:28,299 [INFO] src.engine: Epoch 8/10 | Loss: 0.8921 | Val Acc: 0.5932
+2026-04-22 13:34:35,633 [INFO] src.engine: Epoch 9/10 | Loss: 0.8295 | Val Acc: 0.6188
+2026-04-22 13:34:35,637 [INFO] src.engine: Best model artifact saved with accuracy: 0.6188
+2026-04-22 13:34:42,848 [INFO] src.engine: Epoch 10/10 | Loss: 0.7700 | Val Acc: 0.6349
+2026-04-22 13:34:42,853 [INFO] src.engine: Best model artifact saved with accuracy: 0.6349
+2026-04-22 13:34:42,853 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 13:34:43,076 [INFO] src.engine: Metrics plot saved to artifacts/metrics_1_batches.png
+2026-04-22 13:34:43,076 [INFO] __main__: Loading best model for final evaluation on static test set...
+2026-04-22 13:34:43,087 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 13:34:48,712 [INFO] src.engine: Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    airplane       0.65      0.69      0.67      1181
+  automobile       0.71      0.77      0.74      1188
+        bird       0.52      0.42      0.47      1232
+         cat       0.47      0.31      0.37      1274
+        deer       0.52      0.60      0.55      1179
+         dog       0.49      0.62      0.55      1230
+        frog       0.67      0.74      0.71      1123
+       horse       0.70      0.69      0.69      1217
+        ship       0.72      0.73      0.73      1189
+       truck       0.73      0.66      0.70      1187
+
+    accuracy                           0.62     12000
+   macro avg       0.62      0.62      0.62     12000
+weighted avg       0.62      0.62      0.61     12000
+
+2026-04-22 13:34:48,712 [INFO] __main__: >>> Experiment finished successfully.
+2026-04-22 13:37:26,507 [INFO] __main__: >>> Starting Lab 2 Experiment
+2026-04-22 13:37:26,507 [INFO] __main__: Configuration: Selected Batches = ['0', '1', '2', '3', '4']
+2026-04-22 13:37:26,508 [INFO] src.data_utils: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-22 13:37:59,951 [INFO] src.data_utils: Batches selected: ['0', '1', '2', '3', '4']
+2026-04-22 13:37:59,952 [INFO] src.data_utils: Final sizes - Train: 38400, Val: 9600, Test: 12000
+2026-04-22 13:37:59,958 [INFO] src.engine: >>> Training process started.
+2026-04-22 13:41:42,868 [INFO] src.engine: Epoch 1/10 | Loss: 1.4642 | Val Acc: 0.5786
+2026-04-22 13:41:42,875 [INFO] src.engine: Best model artifact saved with accuracy: 0.5786
+2026-04-22 13:43:16,531 [INFO] src.engine: Epoch 2/10 | Loss: 1.1404 | Val Acc: 0.6265
+2026-04-22 13:43:16,537 [INFO] src.engine: Best model artifact saved with accuracy: 0.6265
+2026-04-22 13:44:37,104 [INFO] src.engine: Epoch 3/10 | Loss: 1.0318 | Val Acc: 0.6379
+2026-04-22 13:44:37,110 [INFO] src.engine: Best model artifact saved with accuracy: 0.6379
+2026-04-22 13:46:14,965 [INFO] src.engine: Epoch 4/10 | Loss: 0.9550 | Val Acc: 0.6753
+2026-04-22 13:46:14,972 [INFO] src.engine: Best model artifact saved with accuracy: 0.6753
+2026-04-22 13:47:53,370 [INFO] src.engine: Epoch 5/10 | Loss: 0.8914 | Val Acc: 0.6758
+2026-04-22 13:47:53,377 [INFO] src.engine: Best model artifact saved with accuracy: 0.6758
+2026-04-22 13:49:33,153 [INFO] src.engine: Epoch 6/10 | Loss: 0.8405 | Val Acc: 0.6849
+2026-04-22 13:49:33,159 [INFO] src.engine: Best model artifact saved with accuracy: 0.6849
+2026-04-22 13:51:05,082 [INFO] src.engine: Epoch 7/10 | Loss: 0.7954 | Val Acc: 0.6876
+2026-04-22 13:51:05,086 [INFO] src.engine: Best model artifact saved with accuracy: 0.6876
+2026-04-22 13:51:37,501 [INFO] src.engine: Epoch 8/10 | Loss: 0.7490 | Val Acc: 0.7048
+2026-04-22 13:51:37,505 [INFO] src.engine: Best model artifact saved with accuracy: 0.7048
+2026-04-22 13:52:58,797 [INFO] src.engine: Epoch 9/10 | Loss: 0.7054 | Val Acc: 0.7125
+2026-04-22 13:52:58,803 [INFO] src.engine: Best model artifact saved with accuracy: 0.7125
+2026-04-22 13:54:41,203 [INFO] src.engine: Epoch 10/10 | Loss: 0.6673 | Val Acc: 0.7077
+2026-04-22 13:54:41,204 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 13:54:41,610 [INFO] src.engine: Metrics plot saved to artifacts/metrics_5_batches.png
+2026-04-22 13:54:41,610 [INFO] __main__: Loading best model for final evaluation on static test set...
+2026-04-22 13:54:41,624 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 13:54:53,813 [INFO] src.engine: Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    airplane       0.73      0.76      0.74      1181
+  automobile       0.73      0.88      0.80      1188
+        bird       0.66      0.60      0.63      1232
+         cat       0.59      0.43      0.50      1274
+        deer       0.62      0.67      0.65      1179
+         dog       0.57      0.66      0.61      1230
+        frog       0.78      0.78      0.78      1123
+       horse       0.76      0.81      0.78      1217
+        ship       0.84      0.82      0.83      1189
+       truck       0.82      0.72      0.77      1187
+
+    accuracy                           0.71     12000
+   macro avg       0.71      0.71      0.71     12000
+weighted avg       0.71      0.71      0.71     12000
+
+2026-04-22 13:54:53,814 [INFO] __main__: >>> Experiment finished successfully.
