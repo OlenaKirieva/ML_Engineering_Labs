@@ -2,18 +2,18 @@ import logging
 import pickle
 import tarfile
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, Tuple
 
-import numpy as np
 import pandas as pd
 import requests
 import torch
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
-from torchvision import transforms # type: ignore
-from torchvision.io import read_image # type: ignore
+from torchvision import transforms  # type: ignore
+from torchvision.io import read_image  # type: ignore
 
 logger = logging.getLogger(__name__)
+
 
 def download_and_extract(url: str, save_dir: str) -> str:
     save_path = Path(save_dir)
@@ -32,6 +32,7 @@ def download_and_extract(url: str, save_dir: str) -> str:
             file_path.unlink()
     return str(save_path)
 
+
 def cifar_to_jpg(cifar_dir: str, output_dir: str) -> pd.DataFrame:
     cifar_path = Path(cifar_dir) / "cifar-10-batches-py"
     output_path = Path(output_dir)
@@ -48,17 +49,27 @@ def cifar_to_jpg(cifar_dir: str, output_dir: str) -> pd.DataFrame:
             labels = entry["labels"]
             filenames = entry["filenames"]
             for i in range(len(images)):
-                img_name = filenames[i] if filenames[i].endswith(".jpg") else f"{filenames[i]}.jpg"
+                img_name = (
+                    filenames[i]
+                    if filenames[i].endswith(".jpg")
+                    else f"{filenames[i]}.jpg"
+                )
                 full_img_path = img_dir / f"{batch_file}_{img_name}"
                 if not full_img_path.exists():
                     Image.fromarray(images[i]).save(full_img_path)
-                data_records.append({"image_path": str(full_img_path.absolute()), "label": labels[i]})
+                data_records.append(
+                    {"image_path": str(full_img_path.absolute()), "label": labels[i]}
+                )
     return pd.DataFrame(data_records)
 
-def train_test_split(data: pd.DataFrame, test_size: float = 0.2) -> Tuple[pd.DataFrame, pd.DataFrame]:
+
+def train_test_split(
+    data: pd.DataFrame, test_size: float = 0.2
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     n_test = int(len(data) * test_size)
     shuffled = data.sample(frac=1, random_state=42)
     return shuffled.iloc[n_test:], shuffled.iloc[:n_test]
+
 
 class CIFARImageDataset(Dataset):
     def __init__(self, dataframe: pd.DataFrame, transform: Any) -> None:
@@ -76,20 +87,50 @@ class CIFARImageDataset(Dataset):
             image = self.transform(image)
         return image, label
 
-def get_transforms(is_train: bool = True) -> Any:
-    # BASELINE: Тільки базові трансформації
-    return transforms.Compose([
-        transforms.Resize((32, 32)),
-        transforms.ConvertImageDtype(torch.float32),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
 
-def create_data_loader(df: pd.DataFrame, config: Dict[str, Any], is_train: bool = True) -> DataLoader:
+def get_transforms(is_train: bool = True) -> Any:
+    if is_train:
+        # ПОКРАЩЕННЯ: Heavy Augmentation
+        return transforms.Compose(
+            [
+                transforms.Resize((32, 32)),
+                transforms.RandomHorizontalFlip(p=0.5),  # Віддзеркалення
+                transforms.RandomCrop(32, padding=4),  # Випадковий зсув
+                transforms.RandomRotation(degrees=15),  # Поворот
+                transforms.ColorJitter(
+                    brightness=0.1, contrast=0.1
+                ),  # Зміна освітлення
+                transforms.ConvertImageDtype(torch.float32),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+                ),
+            ]
+        )
+    return transforms.Compose(
+        [
+            transforms.Resize((32, 32)),
+            transforms.ConvertImageDtype(torch.float32),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ]
+    )
+
+
+def create_data_loader(
+    df: pd.DataFrame, config: Dict[str, Any], is_train: bool = True
+) -> DataLoader:
     transform = get_transforms(is_train=is_train)
     dataset = CIFARImageDataset(df, transform=transform)
-    return DataLoader(dataset, batch_size=config['training']['batch_size'], shuffle=is_train, num_workers=0)
+    return DataLoader(
+        dataset,
+        batch_size=config["training"]["batch_size"],
+        shuffle=is_train,
+        num_workers=0,
+    )
 
-def process_data(config: Dict[str, Any]) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+
+def process_data(
+    config: Dict[str, Any]
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     raw_dir = download_and_extract(config["data"]["url"], config["data"]["raw_dir"])
     full_df = cifar_to_jpg(raw_dir, config["data"]["processed_dir"])
     train_df, test_df = train_test_split(full_df, test_size=config["data"]["test_size"])

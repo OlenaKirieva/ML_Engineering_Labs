@@ -74,3 +74,115 @@
    macro avg       0.68      0.68      0.68     12000
 weighted avg       0.68      0.68      0.68     12000
 
+2026-04-22 10:26:55,932 [INFO] src.data: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-22 10:29:10,346 [INFO] src.data: Converting CIFAR binary to JPG...
+2026-04-22 10:29:11,677 [INFO] src.engine: >>> Training process started.
+2026-04-22 10:30:07,650 [INFO] src.engine: Epoch 1/10 | Loss: 1.7612 | Val Acc: 0.4803
+2026-04-22 10:30:07,655 [INFO] src.engine: Best model artifact saved with accuracy: 0.4803
+2026-04-22 10:31:05,914 [INFO] src.engine: Epoch 2/10 | Loss: 1.5270 | Val Acc: 0.5319
+2026-04-22 10:31:05,918 [INFO] src.engine: Best model artifact saved with accuracy: 0.5319
+2026-04-22 10:32:04,286 [INFO] src.engine: Epoch 3/10 | Loss: 1.4451 | Val Acc: 0.5714
+2026-04-22 10:32:04,290 [INFO] src.engine: Best model artifact saved with accuracy: 0.5714
+2026-04-22 10:33:10,597 [INFO] src.engine: Epoch 4/10 | Loss: 1.3910 | Val Acc: 0.5917
+2026-04-22 10:33:10,602 [INFO] src.engine: Best model artifact saved with accuracy: 0.5917
+2026-04-22 10:34:09,233 [INFO] src.engine: Epoch 5/10 | Loss: 1.3415 | Val Acc: 0.5982
+2026-04-22 10:34:09,237 [INFO] src.engine: Best model artifact saved with accuracy: 0.5982
+2026-04-22 10:35:07,711 [INFO] src.engine: Epoch 6/10 | Loss: 1.3128 | Val Acc: 0.6285
+2026-04-22 10:35:07,715 [INFO] src.engine: Best model artifact saved with accuracy: 0.6285
+2026-04-22 10:36:05,973 [INFO] src.engine: Epoch 7/10 | Loss: 1.2839 | Val Acc: 0.6482
+2026-04-22 10:36:05,978 [INFO] src.engine: Best model artifact saved with accuracy: 0.6482
+2026-04-22 10:37:04,240 [INFO] src.engine: Epoch 8/10 | Loss: 1.2561 | Val Acc: 0.6335
+2026-04-22 10:38:02,473 [INFO] src.engine: Epoch 9/10 | Loss: 1.2425 | Val Acc: 0.6496
+2026-04-22 10:38:02,478 [INFO] src.engine: Best model artifact saved with accuracy: 0.6496
+2026-04-22 10:39:00,740 [INFO] src.engine: Epoch 10/10 | Loss: 1.2133 | Val Acc: 0.6602
+2026-04-22 10:39:00,744 [INFO] src.engine: Best model artifact saved with accuracy: 0.6602
+2026-04-22 10:39:00,745 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 10:39:00,979 [INFO] src.engine: Metrics plot saved to artifacts/improved_metrics.png
+2026-04-22 10:39:00,993 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 10:39:08,453 [INFO] src.engine: Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    airplane       0.71      0.67      0.69      1181
+  automobile       0.69      0.85      0.76      1188
+        bird       0.60      0.49      0.54      1232
+         cat       0.56      0.31      0.40      1274
+        deer       0.61      0.53      0.57      1179
+         dog       0.56      0.57      0.56      1230
+        frog       0.62      0.83      0.71      1123
+       horse       0.61      0.81      0.70      1217
+        ship       0.82      0.77      0.79      1189
+       truck       0.70      0.71      0.71      1187
+
+    accuracy                           0.65     12000
+   macro avg       0.65      0.65      0.64     12000
+weighted avg       0.65      0.65      0.64     12000
+
+2026-04-22 11:03:27,055 [INFO] src.data: Converting CIFAR binary to JPG...
+2026-04-22 11:03:28,516 [INFO] src.engine: >>> Training process started.
+2026-04-22 11:04:24,338 [INFO] src.engine: Epoch 1/25 | Loss: 1.7246 | Val Acc: 0.4920
+2026-04-22 11:04:24,343 [INFO] src.engine: Best model artifact saved with accuracy: 0.4920
+2026-04-22 11:05:23,118 [INFO] src.engine: Epoch 2/25 | Loss: 1.5055 | Val Acc: 0.5393
+2026-04-22 11:05:23,122 [INFO] src.engine: Best model artifact saved with accuracy: 0.5393
+2026-04-22 11:06:21,088 [INFO] src.engine: Epoch 3/25 | Loss: 1.4179 | Val Acc: 0.5739
+2026-04-22 11:06:21,093 [INFO] src.engine: Best model artifact saved with accuracy: 0.5739
+2026-04-22 11:07:19,137 [INFO] src.engine: Epoch 4/25 | Loss: 1.3533 | Val Acc: 0.6045
+2026-04-22 11:07:19,141 [INFO] src.engine: Best model artifact saved with accuracy: 0.6045
+2026-04-22 11:08:17,285 [INFO] src.engine: Epoch 5/25 | Loss: 1.3119 | Val Acc: 0.6071
+2026-04-22 11:08:17,290 [INFO] src.engine: Best model artifact saved with accuracy: 0.6071
+2026-04-22 11:09:14,944 [INFO] src.engine: Epoch 6/25 | Loss: 1.2810 | Val Acc: 0.6312
+2026-04-22 11:09:14,949 [INFO] src.engine: Best model artifact saved with accuracy: 0.6312
+2026-04-22 11:10:13,018 [INFO] src.engine: Epoch 7/25 | Loss: 1.2521 | Val Acc: 0.6400
+2026-04-22 11:10:13,031 [INFO] src.engine: Best model artifact saved with accuracy: 0.6400
+2026-04-22 11:11:11,292 [INFO] src.engine: Epoch 8/25 | Loss: 1.2286 | Val Acc: 0.6492
+2026-04-22 11:11:11,296 [INFO] src.engine: Best model artifact saved with accuracy: 0.6492
+2026-04-22 11:12:09,371 [INFO] src.engine: Epoch 9/25 | Loss: 1.2023 | Val Acc: 0.6459
+2026-04-22 11:13:07,109 [INFO] src.engine: Epoch 10/25 | Loss: 1.1935 | Val Acc: 0.6536
+2026-04-22 11:13:07,114 [INFO] src.engine: Best model artifact saved with accuracy: 0.6536
+2026-04-22 11:14:04,858 [INFO] src.engine: Epoch 11/25 | Loss: 1.1748 | Val Acc: 0.6715
+2026-04-22 11:14:04,862 [INFO] src.engine: Best model artifact saved with accuracy: 0.6715
+2026-04-22 11:15:03,053 [INFO] src.engine: Epoch 12/25 | Loss: 1.1569 | Val Acc: 0.6724
+2026-04-22 11:15:03,058 [INFO] src.engine: Best model artifact saved with accuracy: 0.6724
+2026-04-22 11:16:00,908 [INFO] src.engine: Epoch 13/25 | Loss: 1.1416 | Val Acc: 0.6646
+2026-04-22 11:16:58,707 [INFO] src.engine: Epoch 14/25 | Loss: 1.1298 | Val Acc: 0.6778
+2026-04-22 11:16:58,711 [INFO] src.engine: Best model artifact saved with accuracy: 0.6778
+2026-04-22 11:17:56,964 [INFO] src.engine: Epoch 15/25 | Loss: 1.1252 | Val Acc: 0.6851
+2026-04-22 11:17:56,968 [INFO] src.engine: Best model artifact saved with accuracy: 0.6851
+2026-04-22 11:18:54,909 [INFO] src.engine: Epoch 16/25 | Loss: 1.1075 | Val Acc: 0.6875
+2026-04-22 11:18:54,913 [INFO] src.engine: Best model artifact saved with accuracy: 0.6875
+2026-04-22 11:19:53,082 [INFO] src.engine: Epoch 17/25 | Loss: 1.0969 | Val Acc: 0.6875
+2026-04-22 11:20:50,949 [INFO] src.engine: Epoch 18/25 | Loss: 1.0956 | Val Acc: 0.6984
+2026-04-22 11:20:50,953 [INFO] src.engine: Best model artifact saved with accuracy: 0.6984
+2026-04-22 11:21:48,553 [INFO] src.engine: Epoch 19/25 | Loss: 1.0785 | Val Acc: 0.7031
+2026-04-22 11:21:48,557 [INFO] src.engine: Best model artifact saved with accuracy: 0.7031
+2026-04-22 11:22:46,071 [INFO] src.engine: Epoch 20/25 | Loss: 1.0776 | Val Acc: 0.7035
+2026-04-22 11:22:46,075 [INFO] src.engine: Best model artifact saved with accuracy: 0.7035
+2026-04-22 11:23:44,809 [INFO] src.engine: Epoch 21/25 | Loss: 1.0603 | Val Acc: 0.6995
+2026-04-22 11:24:41,442 [INFO] src.engine: Epoch 22/25 | Loss: 1.0583 | Val Acc: 0.7058
+2026-04-22 11:24:41,446 [INFO] src.engine: Best model artifact saved with accuracy: 0.7058
+2026-04-22 11:25:37,406 [INFO] src.engine: Epoch 23/25 | Loss: 1.0524 | Val Acc: 0.7118
+2026-04-22 11:25:37,410 [INFO] src.engine: Best model artifact saved with accuracy: 0.7118
+2026-04-22 11:26:34,122 [INFO] src.engine: Epoch 24/25 | Loss: 1.0414 | Val Acc: 0.7164
+2026-04-22 11:26:34,126 [INFO] src.engine: Best model artifact saved with accuracy: 0.7164
+2026-04-22 11:27:29,812 [INFO] src.engine: Epoch 25/25 | Loss: 1.0352 | Val Acc: 0.7188
+2026-04-22 11:27:29,816 [INFO] src.engine: Best model artifact saved with accuracy: 0.7188
+2026-04-22 11:27:29,816 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 11:27:30,487 [INFO] src.engine: Metrics plot saved to artifacts/improved_metrics.png
+2026-04-22 11:27:30,505 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 11:27:39,222 [INFO] src.engine: Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    airplane       0.79      0.70      0.74      1181
+  automobile       0.79      0.87      0.83      1188
+        bird       0.72      0.48      0.57      1232
+         cat       0.56      0.53      0.54      1274
+        deer       0.59      0.70      0.64      1179
+         dog       0.63      0.61      0.62      1230
+        frog       0.70      0.84      0.76      1123
+       horse       0.74      0.80      0.77      1217
+        ship       0.85      0.83      0.84      1189
+       truck       0.79      0.80      0.79      1187
+
+    accuracy                           0.71     12000
+   macro avg       0.71      0.71      0.71     12000
+weighted avg       0.71      0.71      0.71     12000
+
