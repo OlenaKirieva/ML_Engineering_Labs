@@ -16,6 +16,7 @@ def train_model(
     config: Dict[str, Any],
     device: torch.device
 ) -> Path:
+    logger.info(">>> Training process started.")
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=config['training']['lr'])
     save_path = Path(config['model']['save_path'])
@@ -50,10 +51,13 @@ def train_model(
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             torch.save(model.state_dict(), save_path)
-            
+            logger.info(f"Best model artifact saved with accuracy: {best_val_acc:.4f}")
+
+    logger.info(">>> Training process finished successfully.")    
     return save_path
 
 def test_model(model: nn.Module, test_loader: DataLoader, device: torch.device) -> float:
+    logger.info(">>> Model evaluation on test set started.")
     model.eval()
     correct = 0
     total = 0

@@ -1,0 +1,35 @@
+2026-04-21 15:38:12,959 [INFO] src.data: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-21 15:39:11,069 [INFO] src.data: Converting CIFAR binary to JPG...
+2026-04-21 15:44:29,759 [INFO] src.engine: Epoch 1 | Val Acc: 0.5727
+2026-04-21 15:44:59,574 [INFO] src.engine: Epoch 2 | Val Acc: 0.6189
+2026-04-21 15:45:23,410 [INFO] src.engine: Epoch 3 | Val Acc: 0.6430
+2026-04-21 15:45:46,930 [INFO] src.engine: Epoch 4 | Val Acc: 0.6661
+2026-04-21 15:46:10,215 [INFO] src.engine: Epoch 5 | Val Acc: 0.6705
+2026-04-21 15:46:33,164 [INFO] src.engine: Epoch 6 | Val Acc: 0.6619
+2026-04-21 15:46:56,019 [INFO] src.engine: Epoch 7 | Val Acc: 0.6716
+2026-04-21 15:47:19,020 [INFO] src.engine: Epoch 8 | Val Acc: 0.6720
+2026-04-21 15:47:41,908 [INFO] src.engine: Epoch 9 | Val Acc: 0.6766
+2026-04-21 15:48:04,807 [INFO] src.engine: Epoch 10 | Val Acc: 0.6720
+2026-04-21 15:48:55,761 [INFO] src.engine: Final Baseline Test Accuracy: 0.6702
+2026-04-22 09:31:04,264 [INFO] src.data: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-22 09:31:53,288 [INFO] src.data: Converting CIFAR binary to JPG...
+2026-04-22 09:31:56,467 [INFO] src.engine: >>> Training process started.
+2026-04-22 09:32:31,836 [INFO] src.engine: Epoch 1 | Val Acc: 0.5672
+2026-04-22 09:32:31,840 [INFO] src.engine: Best model artifact saved with accuracy: 0.5672
+2026-04-22 09:32:55,312 [INFO] src.engine: Epoch 2 | Val Acc: 0.6127
+2026-04-22 09:32:55,315 [INFO] src.engine: Best model artifact saved with accuracy: 0.6127
+2026-04-22 09:33:18,769 [INFO] src.engine: Epoch 3 | Val Acc: 0.6375
+2026-04-22 09:33:18,771 [INFO] src.engine: Best model artifact saved with accuracy: 0.6375
+2026-04-22 09:33:42,141 [INFO] src.engine: Epoch 4 | Val Acc: 0.6729
+2026-04-22 09:33:42,143 [INFO] src.engine: Best model artifact saved with accuracy: 0.6729
+2026-04-22 09:34:05,495 [INFO] src.engine: Epoch 5 | Val Acc: 0.6797
+2026-04-22 09:34:05,497 [INFO] src.engine: Best model artifact saved with accuracy: 0.6797
+2026-04-22 09:34:28,901 [INFO] src.engine: Epoch 6 | Val Acc: 0.6774
+2026-04-22 09:34:52,269 [INFO] src.engine: Epoch 7 | Val Acc: 0.6836
+2026-04-22 09:34:52,271 [INFO] src.engine: Best model artifact saved with accuracy: 0.6836
+2026-04-22 09:35:15,507 [INFO] src.engine: Epoch 8 | Val Acc: 0.6713
+2026-04-22 09:35:38,900 [INFO] src.engine: Epoch 9 | Val Acc: 0.6795
+2026-04-22 09:36:02,297 [INFO] src.engine: Epoch 10 | Val Acc: 0.6704
+2026-04-22 09:36:02,297 [INFO] src.engine: >>> Training process finished successfully.
+2026-04-22 09:36:02,329 [INFO] src.engine: >>> Model evaluation on test set started.
+2026-04-22 09:36:12,746 [INFO] src.engine: Final Baseline Test Accuracy: 0.6793
