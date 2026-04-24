@@ -1,0 +1,44 @@
+stages:
+  data_load:
+    cmd: python -m src.data_load
+    deps:
+    - src/data_load.py
+    - src/utils.py
+    params:
+    - data.batch_names_select
+    - data.processed_dir
+    - data.random_state
+    - data.raw_dir
+    - data.url
+    - data.val_size
+    outs:
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - data/processed/val.csv
+  train:
+    cmd: python -m src.train
+    deps:
+    - data/processed/train.csv
+    - data/processed/val.csv
+    - src/model.py
+    - src/train.py
+    - src/utils.py
+    params:
+    - model.n_classes
+    - model.save_path
+    - train.batch_size
+    - train.device
+    - train.lr
+    - train.num_epochs
+    outs:
+    - artifacts/model.pth
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - artifacts/model.pth
+    - data/processed/test.csv
+    - src/evaluate.py
+    - src/model.py
+    metrics:
+    - metrics.json:
+        cache: false

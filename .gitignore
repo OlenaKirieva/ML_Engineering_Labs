@@ -1,6 +1,32 @@
-data/
+# --- Системні файли та кеші ---
 __pycache__/
-.venv/
-.poetry/
+.ipynb_checkpoints/
 .mypy_cache/
 .ruff_cache/
+.pytest_cache/
+
+# --- Віртуальні оточення ---
+.venv/
+venv/
+.poetry/
+
+# --- Локальні налаштування VS Code ---
+.vscode/
+
+# --- ДАНІ (Критично важливо для DVC) ---
+# Ми ігноруємо самі дані, бо Git відстежує лише .dvc файли та dvc.yaml
+lab1_basic_pipeline/data/
+lab2_dataset_automation/data/
+lab1_basic_pipeline/artifacts/
+lab2_dataset_automation/artifacts/
+lab3_dvc_pipeline/artifacts/
+lab3_dvc_pipeline/data/
+
+# --- Тимчасові файли DVC ---
+# (Зазвичай DVC сам додає себе в ігнорування, але краще перевірити)
+/lab3_dvc_pipeline/.dvc/cache/
+/lab3_dvc_pipeline/.dvc/tmp/
+/lab3_dvc_pipeline/.dvc/config.local
+
+# --- Журнали ---
+# *.log

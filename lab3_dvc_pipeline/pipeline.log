@@ -1,0 +1,35 @@
+2026-04-24 11:55:08,243 [INFO] data_load: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-24 11:55:52,515 [INFO] data_load: Converting CIFAR to JPG...
+2026-04-24 11:56:32,447 [INFO] data_load: Data ingestion complete. Saved to data\processed
+2026-04-24 12:12:36,819 [INFO] train: Starting training stage...
+2026-04-24 12:14:10,653 [INFO] train: Epoch 1/5 finished
+2026-04-24 12:14:28,790 [INFO] train: Epoch 2/5 finished
+2026-04-24 12:14:40,201 [INFO] train: Epoch 3/5 finished
+2026-04-24 12:14:53,673 [INFO] train: Epoch 4/5 finished
+2026-04-24 12:15:07,191 [INFO] train: Epoch 5/5 finished
+2026-04-24 12:15:07,202 [INFO] train: Model saved to artifacts\model.pth
+2026-04-24 12:19:00,966 [INFO] data_load: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-24 12:19:37,751 [INFO] data_load: Converting CIFAR to JPG...
+2026-04-24 12:19:39,727 [INFO] data_load: Data ingestion complete. Saved to data\processed
+2026-04-24 12:19:42,378 [INFO] train: Starting training stage...
+2026-04-24 12:21:33,431 [INFO] train: Epoch 1/7 finished
+2026-04-24 12:21:57,737 [INFO] train: Epoch 2/7 finished
+2026-04-24 12:22:21,515 [INFO] train: Epoch 3/7 finished
+2026-04-24 12:22:45,279 [INFO] train: Epoch 4/7 finished
+2026-04-24 12:23:09,006 [INFO] train: Epoch 5/7 finished
+2026-04-24 12:23:32,714 [INFO] train: Epoch 6/7 finished
+2026-04-24 12:23:56,534 [INFO] train: Epoch 7/7 finished
+2026-04-24 12:23:56,538 [INFO] train: Model saved to artifacts\model.pth
+2026-04-24 13:23:55,756 [INFO] data_load: Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz...
+2026-04-24 13:24:33,921 [INFO] data_load: Converting CIFAR to JPG...
+2026-04-24 13:24:35,691 [INFO] data_load: Data ingestion complete. Saved to data\processed
+2026-04-24 13:24:38,814 [INFO] train: Starting training stage...
+2026-04-24 13:25:02,179 [INFO] train: Epoch 1/7 finished
+2026-04-24 13:25:25,868 [INFO] train: Epoch 2/7 finished
+2026-04-24 13:25:49,838 [INFO] train: Epoch 3/7 finished
+2026-04-24 13:26:13,755 [INFO] train: Epoch 4/7 finished
+2026-04-24 13:26:37,795 [INFO] train: Epoch 5/7 finished
+2026-04-24 13:27:01,821 [INFO] train: Epoch 6/7 finished
+2026-04-24 13:27:25,808 [INFO] train: Epoch 7/7 finished
+2026-04-24 13:27:25,832 [INFO] train: Model saved to artifacts\model.pth
+2026-04-24 13:27:39,897 [INFO] venv: Evaluation complete. Metrics saved to metrics.json

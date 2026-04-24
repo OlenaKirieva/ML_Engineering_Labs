@@ -1,0 +1,4 @@
+[core]
+    remote = local_remote
+['remote "local_remote"']
+    url = C:\Users\kirie\ML_lab1_cifar\dvc_remote

@@ -1,0 +1,99 @@
+schema: '2.0'
+stages:
+  data_load:
+    cmd: python -m src.data_load
+    deps:
+    - path: src/data_load.py
+      hash: md5
+      md5: 43a49095233761286a3e8799ae03448e
+      size: 3723
+    - path: src/utils.py
+      hash: md5
+      md5: be73f52a1436c91310081d2535ab1762
+      size: 515
+    params:
+      params.yaml:
+        data.batch_names_select:
+        - '0'
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        data.processed_dir: data/processed
+        data.random_state: 42
+        data.raw_dir: data/raw
+        data.url: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+        data.val_size: 0.2
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: bcb95c24800f543b493337f655c9da33
+      size: 1216026
+    - path: data/processed/train.csv
+      hash: md5
+      md5: d457aa236eb94515fab07513b53753a1
+      size: 4020566
+    - path: data/processed/val.csv
+      hash: md5
+      md5: 8e17530e7a94bb4a06a4f49f1010e9d2
+      size: 1004087
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: d457aa236eb94515fab07513b53753a1
+      size: 4020566
+    - path: data/processed/val.csv
+      hash: md5
+      md5: 8e17530e7a94bb4a06a4f49f1010e9d2
+      size: 1004087
+    - path: src/model.py
+      hash: md5
+      md5: 19d2e1965a7c2f2ceba2f4f83e361187
+      size: 1060
+    - path: src/train.py
+      hash: md5
+      md5: f711796aa0a4147d76f99cb6ab12a35c
+      size: 2537
+    - path: src/utils.py
+      hash: md5
+      md5: be73f52a1436c91310081d2535ab1762
+      size: 515
+    params:
+      params.yaml:
+        model.n_classes: 10
+        model.save_path: artifacts/model.pth
+        train.batch_size: 64
+        train.device: cpu
+        train.lr: 0.001
+        train.num_epochs: 7
+    outs:
+    - path: artifacts/model.pth
+      hash: md5
+      md5: 1594561322c344dd2b2f59d0b666be1b
+      size: 4289524
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: artifacts/model.pth
+      hash: md5
+      md5: 1594561322c344dd2b2f59d0b666be1b
+      size: 4289524
+    - path: data/processed/test.csv
+      hash: md5
+      md5: bcb95c24800f543b493337f655c9da33
+      size: 1216026
+    - path: src/evaluate.py
+      hash: md5
+      md5: 7fef46027e76225ce5c9fd0905c45acf
+      size: 2645
+    - path: src/model.py
+      hash: md5
+      md5: 19d2e1965a7c2f2ceba2f4f83e361187
+      size: 1060
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 5873c7fc301d05522cefa4cf492c2ee6
+      size: 126
