@@ -1,0 +1,8 @@
+artifact_location: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/707101454064762818
+creation_time: 1777062857611
+experiment_id: '707101454064762818'
+last_update_time: 1777062857611
+lifecycle_stage: active
+name: CIFAR10_Tracking_Lab4
+trace_location: null
+workspace: default

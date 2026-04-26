@@ -13,14 +13,14 @@ venv/
 # --- Локальні налаштування VS Code ---
 .vscode/
 
-# --- ДАНІ (Критично важливо для DVC) ---
-# Ми ігноруємо самі дані, бо Git відстежує лише .dvc файли та dvc.yaml
+# --- ДАНІ 
 lab1_basic_pipeline/data/
 lab2_dataset_automation/data/
 lab1_basic_pipeline/artifacts/
 lab2_dataset_automation/artifacts/
 lab3_dvc_pipeline/artifacts/
 lab3_dvc_pipeline/data/
+lab4_mlflow_tracking/data/
 
 # --- Тимчасові файли DVC ---
 # (Зазвичай DVC сам додає себе в ігнорування, але краще перевірити)

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/707101454064762818/841a9acd94da4cc4941c90c76bddb084/artifacts
+end_time: 1777212580515
+entry_point_name: ''
+experiment_id: '707101454064762818'
+lifecycle_stage: active
+run_id: 841a9acd94da4cc4941c90c76bddb084
+run_name: SimpleCNN_v2_Augmented_Aug_LR-0.0005
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777210863965
+status: 3
+tags: []
+user_id: kirie

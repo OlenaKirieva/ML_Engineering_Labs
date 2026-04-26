@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/559489628123085523/3c9d3ca3ddc9431b953344ca3e7994ff/artifacts
+deleted_time: 1777215743815
+end_time: 1777214782590
+entry_point_name: ''
+experiment_id: '559489628123085523'
+lifecycle_stage: deleted
+run_id: 3c9d3ca3ddc9431b953344ca3e7994ff
+run_name: ProCNN_8Layers_Aug_LR0.0005_E50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777214503572
+status: 4
+tags: []
+user_id: kirie

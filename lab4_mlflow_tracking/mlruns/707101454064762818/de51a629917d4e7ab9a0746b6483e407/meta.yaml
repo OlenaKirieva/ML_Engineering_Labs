@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/707101454064762818/de51a629917d4e7ab9a0746b6483e407/artifacts
+end_time: 1777190960887
+entry_point_name: ''
+experiment_id: '707101454064762818'
+lifecycle_stage: active
+run_id: de51a629917d4e7ab9a0746b6483e407
+run_name: LR-0.001_BS-64
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777190620246
+status: 3
+tags: []
+user_id: kirie

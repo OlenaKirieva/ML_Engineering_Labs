@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/707101454064762818/models/m-215b4f72f5cd4f8fa8b6177b3be45745/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.12.10
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.2.2+cpu
+mlflow_version: 3.11.1
+model_id: m-215b4f72f5cd4f8fa8b6177b3be45745
+model_size_bytes: 4292368
+model_uuid: m-215b4f72f5cd4f8fa8b6177b3be45745
+prompts: null
+run_id: f2c39274465b49b7ac993ca9c1139ae6
+utc_time_created: '2026-04-24 21:05:32.780959'
