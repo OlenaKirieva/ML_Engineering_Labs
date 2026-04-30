@@ -1,0 +1,23 @@
+project_name: "CIFAR10_WandB_Lab5"
+experiment_name: "Architecture_Comparison"
+
+data:
+  url: "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  test_size: 0.2
+  val_size: 0.2
+  random_state: 42
+  n_batches: 5
+  batch_names_select: ["0", "1", "2", "3", "4"]
+
+training:
+  batch_size: 128
+  lr: 0.0005
+  num_epochs: 10
+  device: "cpu"  
+  use_augmentation: true
+
+model:
+  architecture: "ProCNN_8Layers"
+  n_classes: 10

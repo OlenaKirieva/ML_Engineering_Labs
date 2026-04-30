@@ -21,6 +21,8 @@ lab2_dataset_automation/artifacts/
 lab3_dvc_pipeline/artifacts/
 lab3_dvc_pipeline/data/
 lab4_mlflow_tracking/data/
+lab5_wandb_tracking/data/
+lab5_wandb_tracking/wandb/
 
 # --- Тимчасові файли DVC ---
 # (Зазвичай DVC сам додає себе в ігнорування, але краще перевірити)
