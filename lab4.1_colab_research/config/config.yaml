@@ -1,0 +1,20 @@
+data:
+  batch_names_select:
+  - '0'
+  n_batches: 5
+  processed_dir: /content/data/processed
+  random_state: 42
+  raw_dir: /content/data/raw
+  test_size: 0.2
+  url: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+  val_size: 0.2
+experiment_name: CIFAR10_Final_Research
+model:
+  architecture: ProCNN_8Layers
+  n_classes: 10
+training:
+  batch_size: 128
+  device: cuda
+  lr: 0.0005
+  num_epochs: 100
+  use_augmentation: true
