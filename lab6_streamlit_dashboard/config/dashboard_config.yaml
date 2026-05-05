@@ -1,0 +1,10 @@
+mlflow:
+  # Відносний шлях від папки lab6 до папки з логами Colab
+  db_path: "../lab4.1_colab_research/mlflow.db"
+  tracking_uri: "sqlite:///../lab4.1_colab_research/mlflow.db"
+
+data:
+  # Відносний шлях до реєстру картинок
+  registry_path: "../lab5_wandb_tracking/data/processed/test_registry.csv"
+
+classes: ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]

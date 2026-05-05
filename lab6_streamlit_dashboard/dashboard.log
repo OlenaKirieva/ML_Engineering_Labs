@@ -1,0 +1,208 @@
+2026-05-05 20:42:14,063 [INFO] root: Logging system initialized.
+2026-05-05 20:42:14,066 [INFO] src.mlflow_utils: MLflow initialized with URI: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:42:14,084 [INFO] src.mlflow_utils: Attempting to load model for run: ProCNN_8Layers | Aug_Yes | LR:0.0005 | E:100 | BS:128 (b43384b93d634f95a30ed47c3487924e)
+2026-05-05 20:42:14,084 [ERROR] src.mlflow_utils: Weights file not found at specific path: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\2\b43384b93d634f95a30ed47c3487924e\artifacts\model\data\model.pth
+2026-05-05 20:42:17,749 [INFO] root: Logging system initialized.
+2026-05-05 20:42:17,752 [INFO] src.mlflow_utils: MLflow initialized with URI: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:42:21,493 [INFO] root: Logging system initialized.
+2026-05-05 20:42:21,496 [INFO] src.mlflow_utils: MLflow initialized with URI: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:42:21,513 [INFO] src.mlflow_utils: Attempting to load model for run: SimpleCNN | Aug_No | LR:0.001 | E:20 | BS:128 (d015b1e9de5c483f9b63da779a289169)
+2026-05-05 20:42:21,513 [ERROR] src.mlflow_utils: Weights file not found at specific path: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\2\d015b1e9de5c483f9b63da779a289169\artifacts\model\data\model.pth
+2026-05-05 20:42:29,079 [INFO] root: Logging system initialized.
+2026-05-05 20:42:29,084 [INFO] src.mlflow_utils: MLflow initialized with URI: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:18,674 [INFO] root: Logging system initialized.
+2026-05-05 20:52:18,677 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:18,696 [INFO] src.mlflow_utils: --- Global Search for run: ProCNN_8Layers | Aug_Yes | LR:0.0005 | E:100 | BS:128 ---
+2026-05-05 20:52:18,720 [INFO] src.mlflow_utils: 🎯 Match found in models folder: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-31d913b9e7d242279198658f0222140a\artifacts\data\model.pth
+2026-05-05 20:52:18,746 [INFO] src.mlflow_utils: ✅ Successfully loaded weights from C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-31d913b9e7d242279198658f0222140a\artifacts\data\model.pth
+2026-05-05 20:52:27,141 [INFO] root: Logging system initialized.
+2026-05-05 20:52:27,145 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:27,163 [INFO] src.mlflow_utils: --- Global Search for run: SimpleCNN | Aug_No | LR:0.001 | E:20 | BS:128 ---
+2026-05-05 20:52:27,178 [INFO] src.mlflow_utils: 🎯 Match found in models folder: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-a6fa7cfc3fe14e1980f8734aec9a0575\artifacts\data\model.pth
+2026-05-05 20:52:27,198 [INFO] src.mlflow_utils: ✅ Successfully loaded weights from C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-a6fa7cfc3fe14e1980f8734aec9a0575\artifacts\data\model.pth
+2026-05-05 20:52:35,595 [INFO] root: Logging system initialized.
+2026-05-05 20:52:35,600 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:40,670 [INFO] root: Logging system initialized.
+2026-05-05 20:52:40,674 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:42,535 [INFO] root: Logging system initialized.
+2026-05-05 20:52:42,538 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:44,401 [INFO] root: Logging system initialized.
+2026-05-05 20:52:44,405 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:45,664 [INFO] root: Logging system initialized.
+2026-05-05 20:52:45,667 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:46,844 [INFO] root: Logging system initialized.
+2026-05-05 20:52:46,846 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:47,866 [INFO] root: Logging system initialized.
+2026-05-05 20:52:47,872 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:48,884 [INFO] root: Logging system initialized.
+2026-05-05 20:52:48,888 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:49,701 [INFO] root: Logging system initialized.
+2026-05-05 20:52:49,705 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:50,370 [INFO] root: Logging system initialized.
+2026-05-05 20:52:50,374 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:51,062 [INFO] root: Logging system initialized.
+2026-05-05 20:52:51,067 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:52,049 [INFO] root: Logging system initialized.
+2026-05-05 20:52:52,054 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:52,740 [INFO] root: Logging system initialized.
+2026-05-05 20:52:52,743 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:53,556 [INFO] root: Logging system initialized.
+2026-05-05 20:52:53,559 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:52:55,088 [INFO] root: Logging system initialized.
+2026-05-05 20:52:55,093 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:01,809 [INFO] root: Logging system initialized.
+2026-05-05 20:53:01,812 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:14,013 [INFO] root: Logging system initialized.
+2026-05-05 20:53:14,019 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:14,170 [INFO] root: Logging system initialized.
+2026-05-05 20:53:14,173 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:35,744 [INFO] root: Logging system initialized.
+2026-05-05 20:53:35,748 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:38,321 [INFO] root: Logging system initialized.
+2026-05-05 20:53:38,324 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:39,090 [INFO] root: Logging system initialized.
+2026-05-05 20:53:39,095 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:40,162 [INFO] root: Logging system initialized.
+2026-05-05 20:53:40,165 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:40,776 [INFO] root: Logging system initialized.
+2026-05-05 20:53:40,780 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:41,242 [INFO] root: Logging system initialized.
+2026-05-05 20:53:41,245 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:41,692 [INFO] root: Logging system initialized.
+2026-05-05 20:53:41,697 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:42,175 [INFO] root: Logging system initialized.
+2026-05-05 20:53:42,180 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:42,676 [INFO] root: Logging system initialized.
+2026-05-05 20:53:42,679 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:43,168 [INFO] root: Logging system initialized.
+2026-05-05 20:53:43,172 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:43,627 [INFO] root: Logging system initialized.
+2026-05-05 20:53:43,631 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:44,078 [INFO] root: Logging system initialized.
+2026-05-05 20:53:44,082 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:44,560 [INFO] root: Logging system initialized.
+2026-05-05 20:53:44,563 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:45,075 [INFO] root: Logging system initialized.
+2026-05-05 20:53:45,081 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:45,578 [INFO] root: Logging system initialized.
+2026-05-05 20:53:45,581 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:46,227 [INFO] root: Logging system initialized.
+2026-05-05 20:53:46,232 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:53,530 [INFO] root: Logging system initialized.
+2026-05-05 20:53:53,534 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:53:53,552 [INFO] src.mlflow_utils: --- Global Search for run: ProCNN_8Layers | Aug_Yes | LR:0.001 | E:15 | BS:128 ---
+2026-05-05 20:53:53,553 [INFO] src.mlflow_utils: 🎯 Match found in models folder: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-4f96613582214cb790e8c7b647f4a6d6\artifacts\data\model.pth
+2026-05-05 20:53:53,576 [INFO] src.mlflow_utils: ✅ Successfully loaded weights from C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-4f96613582214cb790e8c7b647f4a6d6\artifacts\data\model.pth
+2026-05-05 20:53:55,233 [INFO] root: Logging system initialized.
+2026-05-05 20:53:55,238 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:02,497 [INFO] root: Logging system initialized.
+2026-05-05 20:54:02,501 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:03,293 [INFO] root: Logging system initialized.
+2026-05-05 20:54:03,297 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:03,997 [INFO] root: Logging system initialized.
+2026-05-05 20:54:04,001 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:04,719 [INFO] root: Logging system initialized.
+2026-05-05 20:54:04,722 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:06,495 [INFO] root: Logging system initialized.
+2026-05-05 20:54:06,499 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:07,299 [INFO] root: Logging system initialized.
+2026-05-05 20:54:07,304 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:07,780 [INFO] root: Logging system initialized.
+2026-05-05 20:54:07,784 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:08,263 [INFO] root: Logging system initialized.
+2026-05-05 20:54:08,266 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:08,693 [INFO] root: Logging system initialized.
+2026-05-05 20:54:08,697 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:09,136 [INFO] root: Logging system initialized.
+2026-05-05 20:54:09,142 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:09,663 [INFO] root: Logging system initialized.
+2026-05-05 20:54:09,667 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:10,115 [INFO] root: Logging system initialized.
+2026-05-05 20:54:10,119 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:10,615 [INFO] root: Logging system initialized.
+2026-05-05 20:54:10,618 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:16,163 [INFO] root: Logging system initialized.
+2026-05-05 20:54:16,168 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:16,496 [INFO] root: Logging system initialized.
+2026-05-05 20:54:16,499 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:23,892 [INFO] root: Logging system initialized.
+2026-05-05 20:54:23,896 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:23,910 [INFO] root: Logging system initialized.
+2026-05-05 20:54:23,915 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:31,965 [INFO] root: Logging system initialized.
+2026-05-05 20:54:31,968 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:39,646 [INFO] root: Logging system initialized.
+2026-05-05 20:54:39,651 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:39,665 [INFO] root: Logging system initialized.
+2026-05-05 20:54:39,670 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:45,310 [INFO] root: Logging system initialized.
+2026-05-05 20:54:45,315 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:52,200 [INFO] root: Logging system initialized.
+2026-05-05 20:54:52,203 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:53,383 [INFO] root: Logging system initialized.
+2026-05-05 20:54:53,387 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:54,383 [INFO] root: Logging system initialized.
+2026-05-05 20:54:54,388 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:55,163 [INFO] root: Logging system initialized.
+2026-05-05 20:54:55,168 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:55,869 [INFO] root: Logging system initialized.
+2026-05-05 20:54:55,874 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:56,553 [INFO] root: Logging system initialized.
+2026-05-05 20:54:56,558 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:57,952 [INFO] root: Logging system initialized.
+2026-05-05 20:54:57,957 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:58,743 [INFO] root: Logging system initialized.
+2026-05-05 20:54:58,748 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:54:59,556 [INFO] root: Logging system initialized.
+2026-05-05 20:54:59,560 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:55:00,473 [INFO] root: Logging system initialized.
+2026-05-05 20:55:00,478 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:55:01,310 [INFO] root: Logging system initialized.
+2026-05-05 20:55:01,315 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:55:02,073 [INFO] root: Logging system initialized.
+2026-05-05 20:55:02,078 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:55:02,858 [INFO] root: Logging system initialized.
+2026-05-05 20:55:02,862 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 20:55:04,693 [INFO] root: Logging system initialized.
+2026-05-05 20:55:04,697 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:03:27,396 [INFO] root: Logging system initialized.
+2026-05-05 21:03:27,406 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:03:30,157 [INFO] root: Logging system initialized.
+2026-05-05 21:03:30,160 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:03:33,312 [INFO] root: Logging system initialized.
+2026-05-05 21:03:33,316 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:03,382 [INFO] root: Logging system initialized.
+2026-05-05 21:04:03,385 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:34,731 [INFO] root: Logging system initialized.
+2026-05-05 21:04:34,737 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:41,273 [INFO] root: Logging system initialized.
+2026-05-05 21:04:41,276 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:42,512 [INFO] root: Logging system initialized.
+2026-05-05 21:04:42,516 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:49,317 [INFO] root: Logging system initialized.
+2026-05-05 21:04:49,320 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:04:50,783 [INFO] root: Logging system initialized.
+2026-05-05 21:04:50,787 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:05:05,162 [INFO] root: Logging system initialized.
+2026-05-05 21:05:05,172 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:11:04,438 [INFO] root: Logging system initialized.
+2026-05-05 21:11:04,442 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:11:04,768 [INFO] root: Logging system initialized.
+2026-05-05 21:11:04,772 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:11:42,909 [INFO] root: Logging system initialized.
+2026-05-05 21:11:42,914 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:11:42,935 [INFO] root: Logging system initialized.
+2026-05-05 21:11:42,939 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:11:49,077 [INFO] root: Logging system initialized.
+2026-05-05 21:11:49,081 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:12:46,415 [INFO] root: Logging system initialized.
+2026-05-05 21:12:46,419 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:12:46,730 [INFO] root: Logging system initialized.
+2026-05-05 21:12:46,734 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:32:47,442 [INFO] root: Logging system initialized.
+2026-05-05 21:32:47,446 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-05 21:32:47,477 [INFO] src.mlflow_utils: --- Global Search for run: ProCNN_8Layers | Aug_Yes | LR:0.0005 | E:100 | BS:128 ---
+2026-05-05 21:32:47,478 [INFO] src.mlflow_utils: 🎯 Match found in models folder: C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-31d913b9e7d242279198658f0222140a\artifacts\data\model.pth
+2026-05-05 21:32:47,494 [INFO] src.mlflow_utils: ✅ Successfully loaded weights from C:\Users\kirie\ML_lab1_final\lab4.1_colab_research\mlruns\models\m-31d913b9e7d242279198658f0222140a\artifacts\data\model.pth
+2026-05-05 21:32:47,727 [INFO] root: Logging system initialized.
+2026-05-05 21:32:47,730 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
