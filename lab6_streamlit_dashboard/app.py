@@ -337,11 +337,16 @@ def main():
                     if method == "Grad-CAM":
                         explanation_data = run_gradcam(model, tens, (224, 224))
                     else:
-                        # LIME уже повертає 224x224 в нашій останній версії
                         explanation_data = run_lime(model, img)
-
-                    st.image(explanation_data, width=250, caption=f"{method} View")
-
+                    
+                    if explanation_data is not None:
+                        # МАГІЯ: Перетворюємо масив у об'єкт PIL Image
+                        # Це прибере помилку з ".format == GIF"
+                        final_img = Image.fromarray(explanation_data)
+                        st.image(final_img, width=250, caption=f"{method} View")
+                    else:
+                        st.error("Explanation failed.")
+                        
             # 3. КНОПКА ЗАВАНТАЖЕННЯ ЗВІТУ
             st.divider()
             report_btn_col, _ = st.columns([1, 3])

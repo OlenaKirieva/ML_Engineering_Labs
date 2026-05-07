@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/kirie/ML_lab1_final/lab4_mlflow_tracking/mlruns/559489628123085523/models/m-5dc6dd54ee5c4c7fad774fc0ba5cf45b/artifacts
+creation_timestamp: 1777460373539
+experiment_id: '559489628123085523'
+last_updated_timestamp: 1777460379581
+model_id: m-5dc6dd54ee5c4c7fad774fc0ba5cf45b
+model_type: null
+name: model
+source_run_id: d270b333f8d843d49c30798b4ff736e8
+status: 2
+status_message: null

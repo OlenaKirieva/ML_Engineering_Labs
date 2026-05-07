@@ -1,3 +1,4 @@
+import logging
 from typing import Optional, Tuple
 
 import numpy as np
@@ -13,11 +14,14 @@ try:
 except ImportError:
     GradCAM = None
 
+logger = logging.getLogger(__name__)
 
 def predict_image(
     model: torch.nn.Module, img: Image.Image
 ) -> Tuple[int, float, torch.Tensor, torch.Tensor]:
     """Обробка зображення та прогноз. Повертає (idx, confidence, tensor, all_probs)."""
+    logger.info("Running inference for single image...") 
+    
     transform = transforms.Compose(
         [
             transforms.ToTensor(),
@@ -32,6 +36,8 @@ def predict_image(
         probs = F.softmax(output, dim=1)[0]  # Весь вектор ймовірностей
         conf, pred = torch.max(probs, 0)
 
+    logger.info(f"Prediction result: {pred.item()} with confidence {conf.item()}")
+    
     return int(pred.item()), float(conf.item()), img_t, probs
 
 

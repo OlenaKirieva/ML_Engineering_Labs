@@ -1668,3 +1668,13 @@
 2026-05-07 19:54:10,224 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
 2026-05-07 19:54:12,876 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
 2026-05-07 19:54:19,266 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:05:06,589 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:05:10,429 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:06:34,327 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:06:38,799 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:06:46,310 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:06:54,878 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:12:51,013 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:12:51,316 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:13:00,566 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db
+2026-05-07 20:13:08,120 [INFO] src.mlflow_utils: MLflow initialized: sqlite:///C:/Users/kirie/ML_lab1_final/lab4.1_colab_research/mlflow.db

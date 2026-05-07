@@ -8,7 +8,6 @@ def get_error_metrics(df_preds):
     acc = (total - len(errors)) / total
     return len(errors), acc
 
-
 def get_filtered_errors(df_preds, true_cls, pred_cls, classes, sort_mode):
     logger.info(f"Filtering errors for True:{true_cls} Pred:{pred_cls}")
     errors = df_preds[df_preds["true_label"] != df_preds["pred_label"]].copy()

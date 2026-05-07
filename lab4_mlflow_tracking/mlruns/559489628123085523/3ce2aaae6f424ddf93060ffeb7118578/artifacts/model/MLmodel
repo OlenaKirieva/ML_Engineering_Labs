@@ -1,0 +1,11 @@
+artifact_path: model
+flavors:
+  python_function:
+    data: data
+    loader_module: mlflow.pytorch
+    python_version: 3.12.10
+  pytorch:
+    model_data: data
+    pytorch_version: 2.5.1
+mlflow_version: 2.11.0
+run_id: 3ce2aaae6f424ddf93060ffeb7118578

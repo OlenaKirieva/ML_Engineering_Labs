@@ -137,46 +137,6 @@ def load_predictions_from_mlflow(
     except Exception:
         return None
 
-
-# def load_predictions_from_mlflow(run_id: str, tracking_uri: str, experiment_id: str) -> Optional[pd.DataFrame]:
-#     try:
-#         clean_uri = tracking_uri.replace("sqlite:///", "").replace("file:///", "")
-#         if clean_uri.startswith("/") and clean_uri[2] == ":": clean_uri = clean_uri[1:]
-#         base_dir = Path(clean_uri).parent
-
-#         # Шукаємо у папці artifacts/predictions
-#         pred_dir = base_dir / "mlruns" / str(experiment_id) / str(run_id) / "artifacts" / "predictions"
-
-#         # Якщо папки predictions немає, шукаємо просто в artifacts
-#         if not pred_dir.exists():
-#             pred_dir = base_dir / "mlruns" / str(experiment_id) / str(run_id) / "artifacts"
-
-#         csv_files = list(pred_dir.glob("*.csv")) # Шукаємо будь-який CSV
-#         if csv_files:
-#             return pd.read_csv(csv_files[0])
-#         return None
-#     except Exception:
-#         return None
-
-# def load_predictions_from_mlflow(run_id: str, tracking_uri: str, experiment_id: str) -> Optional[pd.DataFrame]:
-#     """Завантажує CSV з прогнозами (Part 3)."""
-#     try:
-#         clean_uri = tracking_uri.replace("sqlite:///", "").replace("file:///", "")
-#         if clean_uri.startswith("/") and clean_uri[2] == ":": clean_uri = clean_uri[1:]
-#         base_dir = Path(clean_uri).parent
-
-#         # Шукаємо у папці artifacts/predictions
-#         pred_dir = base_dir / "mlruns" / str(experiment_id) / str(run_id) / "artifacts" / "predictions"
-
-#         if pred_dir.exists():
-#             csv_files = list(pred_dir.glob("temp_preds_*.csv"))
-#             if csv_files:
-#                 return pd.read_csv(csv_files[0])
-#         return None
-#     except Exception:
-#         return None
-
-
 def load_artifact_text(
     run_id: str, experiment_id: str, tracking_uri: str, filename: str
 ) -> Optional[str]:
@@ -199,40 +159,3 @@ def load_artifact_text(
         return None
     except Exception:
         return None
-
-
-# def load_artifact_text(run_id: str, experiment_id: str, tracking_uri: str, filename: str) -> Optional[str]:
-#     """Зчитує текстовий артефакт (звіт) прямо з папки результатів."""
-#     try:
-#         clean_uri = tracking_uri.replace("sqlite:///", "").replace("file:///", "")
-#         if clean_uri.startswith("/") and clean_uri[2] == ":": clean_uri = clean_uri[1:]
-#         base_dir = Path(clean_uri).parent
-
-#         # Шлях до артефакту
-#         file_path = base_dir / "mlruns" / str(experiment_id) / str(run_id) / "artifacts" / filename
-
-#         if file_path.exists():
-#             with open(file_path, "r", encoding="utf-8") as f:
-#                 return f.read()
-#         return None
-#     except Exception:
-#         return None
-
-# def load_predictions_from_mlflow(run_id: str, tracking_uri: str, experiment_id: str) -> Optional[pd.DataFrame]:
-#     """Завантажує CSV з прогнозами з артефактів MLflow."""
-#     try:
-#         clean_uri = tracking_uri.replace("sqlite:///", "").replace("file:///", "")
-#         if clean_uri.startswith("/") and clean_uri[2] == ":": clean_uri = clean_uri[1:]
-#         base_dir = Path(clean_uri).parent
-
-#         # Шлях до файлу (враховуючи, що ми зберегли його в папку predictions)
-#         # Назва файлу була temp_preds_... ми її знайдемо за маскою
-#         pred_dir = base_dir / "mlruns" / str(experiment_id) / str(run_id) / "artifacts" / "predictions"
-
-#         if pred_dir.exists():
-#             csv_file = list(pred_dir.glob("temp_preds_*.csv"))[0]
-#             return pd.read_csv(csv_file)
-#         return None
-#     except Exception as e:
-#         logger.error(f"Failed to load predictions: {e}")
-#         return None
