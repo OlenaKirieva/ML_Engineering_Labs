@@ -30,7 +30,7 @@ def render_global_stats(classes):
         )
         fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=20, b=0))
         fig.update_traces(width=0.5)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width="stretch")
 
 
 def render_classification_report_mini(report_text):
@@ -61,7 +61,7 @@ def render_error_matrix(df_preds, classes):
         title_x=0.2,  # вирівнювання по центру
         height=500,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width="stretch")
 
 
 def render_probability_chart(classes, probs):
@@ -78,7 +78,7 @@ def render_probability_chart(classes, probs):
         color_continuous_scale="Blues",
     )
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0), showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width="stretch")
 
 def render_prediction_box(config, pred_idx, conf, true_label=None):
     """Універсальний блок результату (як у Вкладці 2)."""
