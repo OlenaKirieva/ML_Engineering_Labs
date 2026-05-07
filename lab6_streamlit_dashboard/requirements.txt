@@ -13,3 +13,4 @@ scikit-image
 opencv-python-headless
 Pillow
 PyYAML
+protobuf==3.20.3
