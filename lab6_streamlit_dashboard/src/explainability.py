@@ -1,13 +1,17 @@
 import logging
 from typing import Any, Optional
-
-import cv2  # type: ignore
 import numpy as np
 import torch
 import torch.nn.functional as F
 from PIL import Image
 
-# Стандартні імпорти (Streamlit Cloud знайде їх у requirements.txt)
+# 1. БЕЗПЕЧНИЙ ІМПОРТ OPENCV (Part 5: Error Handling)
+try:
+    import cv2  # type: ignore
+except ImportError:
+    cv2 = None
+
+# 2. БЕЗПЕЧНИЙ ІМПОРТ LIME ТА SKIMAGE
 try:
     from lime import lime_image  # type: ignore
     from skimage.segmentation import mark_boundaries  # type: ignore
@@ -15,15 +19,41 @@ except ImportError:
     lime_image = None
     mark_boundaries = None
 
-logger = logging.getLogger(__name__)
-
-# Безпечний імпорт Grad-CAM
+# 3. БЕЗПЕЧНИЙ ІМПОРТ GRAD-CAM
 try:
     from pytorch_grad_cam import GradCAM  # type: ignore
     from pytorch_grad_cam.utils.image import show_cam_on_image  # type: ignore
 except ImportError:
     GradCAM = None
     show_cam_on_image = None
+
+logger = logging.getLogger(__name__)
+# import logging
+# from typing import Any, Optional
+
+# import cv2  # type: ignore
+# import numpy as np
+# import torch
+# import torch.nn.functional as F
+# from PIL import Image
+
+# # Стандартні імпорти (Streamlit Cloud знайде їх у requirements.txt)
+# try:
+#     from lime import lime_image  # type: ignore
+#     from skimage.segmentation import mark_boundaries  # type: ignore
+# except ImportError:
+#     lime_image = None
+#     mark_boundaries = None
+
+# logger = logging.getLogger(__name__)
+
+# # Безпечний імпорт Grad-CAM
+# try:
+#     from pytorch_grad_cam import GradCAM  # type: ignore
+#     from pytorch_grad_cam.utils.image import show_cam_on_image  # type: ignore
+# except ImportError:
+#     GradCAM = None
+#     show_cam_on_image = None
 
 
 def run_gradcam(
