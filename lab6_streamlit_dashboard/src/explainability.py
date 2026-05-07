@@ -2,13 +2,36 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from PIL import Image
-from lime import lime_image # type: ignore
-from skimage.segmentation import mark_boundaries # type: ignore
-from src.inference import get_transform
+import logging
 
-from pytorch_grad_cam import GradCAM # type: ignore
-from pytorch_grad_cam.utils.image import show_cam_on_image # type: ignore
-import cv2 # type: ignore
+logger = logging.getLogger(__name__)
+
+# Спробуємо імпортувати OpenCV безпечно
+try:
+    import cv2 # type: ignore
+except ImportError as e:
+    logger.error(f"OpenCV import failed: {e}")
+    cv2 = None
+
+# Спробуємо імпортувати Grad-CAM безпечно
+try:
+    from pytorch_grad_cam import GradCAM # type: ignore
+    from pytorch_grad_cam.utils.image import show_cam_on_image # type: ignore
+except ImportError as e:
+    logger.error(f"Grad-CAM import failed: {e}")
+    GradCAM = None
+    
+# import numpy as np
+# import torch
+# import torch.nn.functional as F
+# from PIL import Image
+# from lime import lime_image # type: ignore
+# from skimage.segmentation import mark_boundaries # type: ignore
+# from src.inference import get_transform
+
+# from pytorch_grad_cam import GradCAM # type: ignore
+# from pytorch_grad_cam.utils.image import show_cam_on_image # type: ignore
+# import cv2 # type: ignore
 
 def run_gradcam(model, img_tensor, original_size):
     """Покращений Grad-CAM із вибором оптимального шару для деталізації."""
