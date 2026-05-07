@@ -23,6 +23,7 @@ streamlit = "^1.32.0"
 plotly = "^5.18.0"
 grad-cam = "^1.5.0"
 lime = "^0.2.0.1"
+opencv-python-headless = "<4.10"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.9.0"
