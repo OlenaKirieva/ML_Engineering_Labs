@@ -1,0 +1,157 @@
+import io
+import textwrap
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.express as px # type: ignore
+import plotly.figure_factory as ff # type: ignore
+import streamlit as st
+from sklearn.metrics import confusion_matrix # type: ignore
+
+
+def render_global_stats(classes):
+    st.subheader("Global Statistics (CIFAR-10)")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Total Samples", "60,000", "100%")
+    c2.metric("Training Set", "50,000", "83.3%")
+    c3.metric("Test Set", "10,000", "16.7%")
+
+    chart_col, spacer = st.columns([0.9, 0.1])
+    with chart_col:
+        fig = px.bar(
+            pd.DataFrame({"Class": classes, "Count": [6000] * 10}),
+            x="Class",
+            y="Count",
+            color="Class",
+            height=300,
+            width=6000,
+            color_discrete_sequence=px.colors.qualitative.Set3,
+        )
+        fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=20, b=0))
+        fig.update_traces(width=0.5)
+        st.plotly_chart(fig, use_container_width=True)
+
+
+def render_classification_report_mini(report_text):
+    """Виводить звіт у компактному вигляді."""
+    st.markdown(
+        "<h3 style='text-align:center; font-family:Arial; font-size:16px; color:black;'>Classification Metrics</h3>",
+        unsafe_allow_html=True,
+    )
+    if report_text:
+        st.code(report_text, language="text")
+    else:
+        st.warning("Report not found.")
+
+
+def render_error_matrix(df_preds, classes):
+    """Малює матрицю помилок, приймаючи весь датафрейм прогнозів."""
+    y_true = df_preds["true_label"]
+    y_pred = df_preds["pred_label"]
+
+    cm = confusion_matrix(y_true, y_pred, labels=list(range(10)))
+    fig = ff.create_annotated_heatmap(
+        z=cm, x=classes, y=classes, colorscale="Viridis", showscale=True
+    )
+    fig.update_xaxes(side="bottom")
+    fig.update_layout(
+        title="Confusion Matrix (10,000 test samples)",
+        title_font=dict(size=16, family="Arial", color="black"),
+        title_x=0.2,  # вирівнювання по центру
+        height=500,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_probability_chart(classes, probs):
+    prob_df = pd.DataFrame({"Class": classes, "Prob": probs.cpu().numpy()}).sort_values(
+        by="Prob"
+    )
+    fig = px.bar(
+        prob_df,
+        x="Prob",
+        y="Class",
+        orientation="h",
+        height=300,
+        color="Prob",
+        color_continuous_scale="Blues",
+    )
+    fig.update_layout(margin=dict(l=0, r=0, t=0, b=0), showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
+
+def render_prediction_box(config, pred_idx, conf, true_label=None):
+    """Універсальний блок результату (як у Вкладці 2)."""
+    class_name = config["classes"][pred_idx]
+    if true_label is not None:
+        is_correct = class_name == true_label
+        if is_correct:
+            st.success(f"**Prediction:** {class_name} (Correct)")
+        else:
+            st.error(f"**Prediction:** {class_name} (Incorrect)")
+            st.info(f"**True Label:** {true_label}")
+    else:
+        st.success(f"**Prediction:** {class_name}")
+
+    st.write(f"**Confidence:** {conf:.2%}")
+    st.progress(conf)
+
+def create_report_image(
+    img, explanation_img, class_name, conf, run_name, model_info, method_name, prob_df
+):
+    """Створює професійний PNG-звіт."""
+    fig = plt.figure(figsize=(15, 9), facecolor="#ffffff")
+    grid = plt.GridSpec(2, 3, wspace=0.3, hspace=0.4)
+
+    # 1. Оригінал
+    ax1 = fig.add_subplot(grid[0, 0])
+    ax1.imshow(img)
+    ax1.set_title("Input Image", fontsize=12, fontweight="bold")
+    ax1.axis("off")
+
+    # 2. Пояснення (Grad-CAM або LIME)
+    ax2 = fig.add_subplot(grid[0, 1])
+    # Перевірка типу даних (LIME повертає float 0-1, Grad-CAM uint8 0-255)
+    if explanation_img.dtype != np.uint8:
+        explanation_img = (explanation_img * 255).astype(np.uint8)
+    ax2.imshow(explanation_img)
+    ax2.set_title(f"Explanation ({method_name})", fontsize=12, fontweight="bold")
+    ax2.axis("off")
+
+    # 3. Графік ймовірностей
+    ax3 = fig.add_subplot(grid[:, 2])
+    colors = plt.cm.Blues(np.linspace(0.3, 0.9, len(prob_df)))
+    ax3.barh(prob_df["Class"], prob_df["Prob"], color=colors)
+    ax3.set_title("Probability Distribution", fontsize=12, fontweight="bold")
+    ax3.set_xlim(0, 1.1)
+    for i, v in enumerate(prob_df["Prob"]):
+        ax3.text(v + 0.01, i, f"{v:.1%}", color="black", va="center", fontsize=9)
+
+    # 4. Текстовий блок
+    ax_text = fig.add_subplot(grid[1, 0:2])
+    ax_text.axis("off")
+    arch_desc = model_info.get("description", "N/A")
+    wrapped_arch = textwrap.fill(f"Architecture: {arch_desc}", width=70)
+
+    report_info = (
+        f"CIFAR-10 INTERPRETABILITY REPORT\n"
+        f"{'='*40}\n"
+        f"Model Run: {run_name[:60]}\n\n"
+        f"{wrapped_arch}\n\n"
+        f"PREDICTION: {class_name.upper()} | CONFIDENCE: {conf:.2%}\n"
+        f"Generated by: Streamlit Analysis Dashboard"
+    )
+    ax_text.text(
+        0,
+        1.0,
+        report_info,
+        fontsize=11,
+        family="monospace",
+        verticalalignment="top",
+        linespacing=1.6,
+    )
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format="png", bbox_inches="tight", dpi=150)
+    plt.close(fig)
+    return buf.getvalue()

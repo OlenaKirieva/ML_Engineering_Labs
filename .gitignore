@@ -24,6 +24,7 @@ lab4_mlflow_tracking/data/
 lab4.1_colab_research/data/
 lab5_wandb_tracking/data/
 lab5_wandb_tracking/wandb/
+lab6_streamlit_dashboard/data_cache/
 
 # --- Тимчасові файли DVC ---
 # (Зазвичай DVC сам додає себе в ігнорування, але краще перевірити)

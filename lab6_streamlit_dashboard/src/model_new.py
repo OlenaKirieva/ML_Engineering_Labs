@@ -18,7 +18,6 @@ class CIFAR10ProCNN(nn.Module):
                 nn.Dropout(dropout_rate),
             )
 
-        # 4 блоки за логікою Kaggle
         self.block1 = conv_block(3, 32, 0.2)  # 32x32 -> 16x16
         self.block2 = conv_block(32, 64, 0.3)  # 16x16 -> 8x8
         self.block3 = conv_block(64, 128, 0.4)  # 8x8 -> 4x4

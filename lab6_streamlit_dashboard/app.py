@@ -2,282 +2,366 @@ import os
 import sys
 
 import mlflow
-import numpy as np
 import pandas as pd
-import plotly.express as px
-import plotly.figure_factory as ff
 import streamlit as st
 from PIL import Image
-from sklearn.metrics import confusion_matrix
 
-# Шлях для модулів
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
-
-from src.data_loader import load_dataset_registry, load_image
+from src.data_loader import load_image, prepare_test_data_locally
+from src.explainability import run_lime
 from src.inference import predict_image, run_gradcam
-from src.mlflow_utils import get_all_experiments, init_mlflow, load_model_smart
-from src.utils import get_absolute_path, load_config, setup_logging
+from src.mlflow_utils import (
+    get_all_experiments,
+    init_mlflow,
+    load_artifact_text,
+    load_model_smart,
+    load_predictions_from_mlflow,
+)
+from src.ui_components import (
+    create_report_image,
+    render_classification_report_mini,
+    render_error_matrix,
+    render_global_stats,
+    render_prediction_box,
+    render_probability_chart,
+)
+from src.utils import MODEL_DESCRIPTIONS, get_absolute_path, load_config, setup_logging
 
-# Ініціалізація
 setup_logging()
-st.set_page_config(page_title="CIFAR-10 Analyzer Pro", layout="wide")
+st.set_page_config(page_title="CIFAR-10 Pro Analyzer", layout="wide")
 
 
 def main():
-
     config = load_config()
 
-    # --- 1. ПІДКЛЮЧЕННЯ ДО MLFLOW (Sidebar) ---
-    st.sidebar.header("📦 Model Selection")
+    # --- 1. ПІДГОТОВКА ДАНИХ (10,000 КАРТИНОК) ---
+    df_full = prepare_test_data_locally()
 
-    raw_db_path = get_absolute_path(config["mlflow"]["db_path"])
-    mlflow_uri = f"sqlite:///{raw_db_path.replace('\\', '/')}"
+    # --- 2. SIDEBAR: MODEL SELECTION ---
+    st.sidebar.header("📦 Model Selection")
+    db_path = get_absolute_path(config["mlflow"]["db_path"])
+    mlflow_uri = f"sqlite:///{db_path.replace('\\', '/')}"
     init_mlflow(mlflow_uri)
 
     try:
         all_exps = get_all_experiments()
-        # Фільтруємо експерименти: лишаємо тільки фінальне дослідження (Part 5 [Task] Filtering)
-        final_exps = [e for e in all_exps if e.name == "CIFAR10_Final_Research"]
-
-        if not final_exps:
-            st.sidebar.warning("Final Research experiment not found. Showing all.")
-            final_exps = all_exps
-
-        exp_names = [e.name for e in final_exps]
-        selected_exp_name = st.sidebar.selectbox("Experiment", exp_names)
-        selected_exp = next(e for e in final_exps if e.name == selected_exp_name)
-
+        selected_exp = next(e for e in all_exps if e.name == "CIFAR10_Final_Research")
         runs_df = mlflow.search_runs(experiment_ids=[selected_exp.experiment_id])
+        finished_runs = runs_df[runs_df["status"] == "FINISHED"].copy()
 
-        if not runs_df.empty:
-            val_acc_col = (
-                "metrics.val_acc" if "metrics.val_acc" in runs_df.columns else "val_acc"
-            )
+        # Фільтрація моделей
+        is_simple = finished_runs["tags.mlflow.runName"].str.contains(
+            "Simple", na=False
+        )
+        best_simple = (
+            finished_runs[is_simple]
+            .sort_values(by="metrics.val_acc", ascending=False)
+            .head(1)
+        )
+        all_pro = finished_runs[~is_simple].sort_values(
+            by="metrics.val_acc", ascending=False
+        )
+        final_runs = pd.concat([all_pro, best_simple])
 
-            # Фільтруємо лише успішні та завершені
-            runs_df = runs_df[runs_df["status"] == "FINISHED"].copy()
+        selected_run_name = st.sidebar.selectbox(
+            "Select Model Version", final_runs["tags.mlflow.runName"].tolist()
+        )
+        run_info = final_runs[
+            final_runs["tags.mlflow.runName"] == selected_run_name
+        ].iloc[0]
+        run_id = run_info["run_id"]
 
-            # --- РОЗУМНА ФІЛЬТРАЦІЯ МОДЕЛЕЙ ---
-            # Розділяємо на Pro та Simple
-            is_simple = runs_df["tags.mlflow.runName"].str.contains("Simple", na=False)
+        model = load_model_smart(
+            run_id, selected_exp.experiment_id, selected_run_name, mlflow_uri
+        )
 
-            # Лишаємо лише один найкращий Simple (Baseline)
-            best_simple = (
-                runs_df[is_simple].sort_values(by=val_acc_col, ascending=False).head(1)
-            )
-            # Лишаємо всі ProCNN для порівняння
-            all_pro = runs_df[~is_simple].sort_values(by=val_acc_col, ascending=False)
+        if model:
+            st.sidebar.success("✅ Model Loaded!")
 
-            final_runs = pd.concat([all_pro, best_simple])
+        # ЗАВАНТАЖЕННЯ ТА СИНХРОНІЗАЦІЯ ПРОГНОЗІВ
+        df_preds_raw = load_predictions_from_mlflow(
+            run_id, mlflow_uri, selected_exp.experiment_id
+        )
 
-            run_names = final_runs["tags.mlflow.runName"].fillna("Unnamed").tolist()
-            # ТІЛЬКИ ОДИН SELECTBOX ДЛЯ ВИБОРУ МОДЕЛІ
-            selected_run_name = st.sidebar.selectbox("Select Model Version", run_names)
-
-            run_info = final_runs[
-                final_runs["tags.mlflow.runName"] == selected_run_name
-            ].iloc[0]
-            run_id = run_info["run_id"]
-
-            # Завантаження моделі
-            model = load_model_smart(
-                run_id, selected_exp.experiment_id, selected_run_name, mlflow_uri
-            )
-            if model:
-                st.sidebar.success("✅ Model Loaded!")
-            else:
-                st.sidebar.error("❌ Weights not found.")
+        if df_preds_raw is not None:
+            # Якщо довжини різні (наприклад 500 в MLflow і 10000 локально), робимо зріз
+            min_len = min(len(df_preds_raw), len(df_full))
+            df_preds = df_preds_raw.iloc[:min_len].copy()
+            df_preds["image_path"] = df_full["image_path"].iloc[:min_len].values
+            if len(df_preds_raw) < 10000:
+                st.sidebar.warning(
+                    f"⚠️ Only {len(df_preds_raw)} predictions found for this model."
+                )
         else:
-            st.sidebar.error("No runs in this experiment.")
-            st.stop()
+            df_preds = None
+
+        # Паспорт моделі
+        st.sidebar.divider()
+        st.sidebar.subheader("📄 Model Passport")
+        m_key = (
+            "ProCNN_8Layers_Optimal"
+            if "E:100" in selected_run_name
+            else (
+                "SimpleCNN" if "Simple" in selected_run_name else "ProCNN_8Layers_Fast"
+            )
+        )
+        info = MODEL_DESCRIPTIONS.get(m_key, {})
+        st.sidebar.write(f"**Arch:** {info.get('description', 'N/A')}")
+        st.sidebar.write(
+            f"**Layers:** {info.get('layers')} | **Params:** {info.get('params')}"
+        )
 
     except Exception as e:
         st.sidebar.error(f"MLflow Error: {e}")
         st.stop()
 
-    # --- 2. Вкладки (Tabs) ---
+    # --- 3. Вкладки ---
     t1, t2, t3 = st.tabs(
-        ["📊 Dataset Exploration", "🔍 Error Analysis", "🧠 Prediction & Grad-CAM"]
+        ["📊 Dataset Exploration", "🔍 Error Explorer", "🧠 Explainability"]
     )
 
-    # --- TAB 1: DATASET EXPLORATION ---
+    # --- TAB 1: DATASET ---
     with t1:
-        st.header("Dataset Overview")
-        registry_path = get_absolute_path(config["data"]["registry_path"])
-        df = load_dataset_registry(registry_path)
-
-        if df is not None:
-            # ВИПРАВЛЕННЯ ПОМИЛКИ AttributeError (доступ через індекси [0], [1], [2])
-            col_sizes = st.columns(3)
-            col_sizes[0].metric("Training Set", "38,400", "80%")
-            col_sizes[1].metric("Validation Set", "9,600", "20%")
-            col_sizes[2].metric("Test Set (Static)", "12,000", "Static")
-
-            c1, c2 = st.columns([1, 2])
-
-            with c1:
-                st.subheader("Statistics")
-                st.write(f"**Total Samples:** {len(df)}")
-                class_counts = df["label"].value_counts().reset_index()
-                class_counts.columns = ["class_id", "count"]
-                class_counts["class_name"] = class_counts["class_id"].apply(
-                    lambda x: config["classes"][x]
+        c1, c2 = st.columns([1.5, 1.2])
+        with c1:
+            render_global_stats(config["classes"])
+        with c2:
+            st.subheader("Interactive Inspector")
+            if df_full is not None:
+                sel_class = st.selectbox(
+                    "Category", ["All"] + config["classes"], key="t1_cls"
                 )
-                fig = px.bar(
-                    class_counts, x="class_name", y="count", title="Class Distribution"
+                filtered = (
+                    df_full
+                    if sel_class == "All"
+                    else df_full[df_full["label"] == config["classes"].index(sel_class)]
                 )
-                st.plotly_chart(fig, use_container_width=True)
-
-            with c2:
-                st.subheader("Sample Inspection")
-                selected_class = st.selectbox(
-                    "Filter by class", ["All"] + config["classes"]
+                idx = st.number_input(
+                    f"Sample Index (0 - {len(filtered)-1})", 0, len(filtered) - 1, 0
                 )
-                filtered_df = (
-                    df
-                    if selected_class == "All"
-                    else df[df["label"] == config["classes"].index(selected_class)]
-                )
+                sample = filtered.iloc[idx]
+                st.image(load_image(sample["image_path"]), width=200)
+                # ВИМОГА: Додати правильну категорію
+                st.info(f"**True Category:** {config['classes'][sample['label']]}")
 
-                idx = st.number_input("Sample index", 0, len(filtered_df) - 1, 0)
-                sample = filtered_df.iloc[idx]
-                img = load_image(sample["image_path"])
-                if img:
-                    st.image(
-                        img,
-                        caption=f"Class: {config['classes'][sample['label']]}",
-                        width=250,
-                    )
-                    st.caption(f"Path: {sample['image_path']}")
-
-    # --- TAB 2: ERROR ANALYSIS ---
+    # --- TAB 2: ERROR EXPLORER (ТРИ СТОВПЧИКИ) ---
     with t2:
-        st.header("🔍 Model Error Analysis")
+        # st.header("🔍 Comprehensive Performance Analysis")
+        if df_preds is not None:
+            col_matrix, col_report = st.columns([1, 1])
 
-        # Скидаємо результати, якщо змінився Run ID у Sidebar
-        if (
-            "last_run_id" not in st.session_state
-            or st.session_state.last_run_id != run_id
-        ):
-            st.session_state.last_run_id = run_id
-            if "analysis_data" in st.session_state:
-                del st.session_state["analysis_data"]
+            with col_matrix:
+                render_error_matrix(df_preds, config["classes"])
 
-        # Кнопка запуску
-        if st.button("🚀 Run Analysis on 200 Samples"):
-            with st.spinner("Analyzing..."):
-                subset = df.sample(n=min(200, len(df)), random_state=42)
-                y_true = subset["label"].values
-
-                preds, confs = [], []
-                for p in subset["image_path"]:
-                    p_idx, p_conf, _, _ = predict_image(model, load_image(p))
-                    preds.append(p_idx)
-                    confs.append(p_conf)
-
-                y_pred = np.array(preds)
-                errors_idx = np.where(y_pred != y_true)[0]
-
-                # ЗБЕРІГАЄМО В ПАМ'ЯТЬ СЕСІЇ (Part 5 [Task] Error Handling/Stability)
-                st.session_state["analysis_data"] = {
-                    "y_true": y_true,
-                    "y_pred": y_pred,
-                    "confs": confs,
-                    "errors_idx": errors_idx,
-                    "subset": subset,
-                }
-
-        # Відображаємо результати, якщо вони вже є в пам'яті
-        if "analysis_data" in st.session_state:
-            res = st.session_state["analysis_data"]
-
-            st.subheader("Confusion Matrix")
-            cm = confusion_matrix(res["y_true"], res["y_pred"], labels=list(range(10)))
-            fig_cm = ff.create_annotated_heatmap(
-                z=cm, x=config["classes"], y=config["classes"], colorscale="Blues"
-            )
-            st.plotly_chart(fig_cm, use_container_width=True)
-
-            st.subheader(f"Misclassified Examples ({len(res['errors_idx'])})")
-            if len(res["errors_idx"]) > 0:
-                # Тепер слайдер не буде скидати додаток!
-                err_choice = st.slider(
-                    "Browse errors", 0, len(res["errors_idx"]) - 1, 0
+            with col_report:
+                rep = load_artifact_text(
+                    run_id,
+                    selected_exp.experiment_id,
+                    mlflow_uri,
+                    "classification_report.txt",
                 )
-                real_idx = res["errors_idx"][err_choice]
-                err_sample = res["subset"].iloc[real_idx]
+                render_classification_report_mini(rep)
 
-                col_img, col_txt = st.columns(2)
-                with col_img:
-                    st.image(load_image(err_sample["image_path"]), width=200)
-                with col_txt:
-                    st.error(
-                        f"Predicted: **{config['classes'][res['y_pred'][real_idx]]}**"
-                    )
-                    st.info(
-                        f"True Label: **{config['classes'][res['y_true'][real_idx]]}**"
-                    )
-                    st.write(f"Confidence: {res['confs'][real_idx]:.2%}")
+        # Створюємо два стовпчики для нижнього ряду
+        col_filter, col_preview = st.columns([1, 1])
+
+        with col_filter:
+            st.write("##### 🛠️ Filters")
+            f_col1, _, f_col2 = st.columns([1, 0.2, 1])
+
+            with f_col1:
+                # 1. Вибір реального класу (True Label) з опцією "All"
+                t_f_name = st.selectbox(
+                    "Select Actual Class:",
+                    ["All"] + config["classes"],
+                    key="t2_filter_true",
+                )
+
+                # 2. Вибір прогнозу (Predicted Label)
+                p_options = ["All Errors", "Correct Only"] + config["classes"]
+                p_f_name = st.selectbox(
+                    "Model Predicted as:", p_options, key="t2_filter_pred"
+                )
+
+                # --- СКЛАДНА ЛОГІКА ФІЛЬТРАЦІЇ ---
+                temp_df = df_preds.copy()
+
+                # Фільтр по входу (Actual)
+                if t_f_name != "All":
+                    t_idx = config["classes"].index(t_f_name)
+                    temp_df = temp_df[temp_df["true_label"] == t_idx]
+
+                # Фільтр по виходу (Predicted)
+                if p_f_name == "All Errors":
+                    display_df = temp_df[temp_df["true_label"] != temp_df["pred_label"]]
+                elif p_f_name == "Correct Only":
+                    display_df = temp_df[temp_df["true_label"] == temp_df["pred_label"]]
+                else:
+                    p_idx = config["classes"].index(p_f_name)
+                    display_df = temp_df[temp_df["pred_label"] == p_idx]
+                    # Якщо обрано конкретний клас передбачення, а Actual="All",
+                    # то зазвичай цікаво бачити помилки (де модель сплутала щось із цим класом)
+                    if t_f_name == "All":
+                        display_df = display_df[
+                            display_df["true_label"] != display_df["pred_label"]
+                        ]
+
+            # --- СОРТУВАННЯ ---
+            with f_col2:
+                sort_mode = st.radio(
+                    "Sort results by:", ["Highest Confidence", "Lowest Confidence"]
+                )
+                display_df = display_df.sort_values(
+                    by="confidence", ascending=(sort_mode == "Lowest Confidence")
+                )
+
+                st.write(f"🔍 Found **{len(display_df)}** matches.")
+
+            if not display_df.empty:
+                idx_in_list = st.slider("Browse matches:", 0, len(display_df) - 1, 0)
+                selected_row = display_df.iloc[idx_in_list]
+                global_idx = display_df.index[idx_in_list]
             else:
-                st.success("No errors found in this subset!")
+                st.warning("No samples found for this combination.")
 
-    # --- TAB 3: PREDICTION & EXPLAINABILITY ---
-    with t3:
-        st.header("🧠 Prediction & Explainability")
-        uploaded_file = st.file_uploader(
-            "Upload an image...", type=["jpg", "png", "jpeg"]
-        )
+            st.caption("💡 Tip: Each class has 1000 samples.")
 
-        if uploaded_file and model:
-            img = Image.open(uploaded_file).convert("RGB")
+        with col_preview:
+            st.write("##### 🖼️ Sample Preview")
+            if not display_df.empty:
+                # Вкладені колонки для компактного відображення
+                img_col, info_col = st.columns([1, 1])
 
-            # Отримуємо результати (тепер тут 4 значення)
-            pred_idx, conf, tensor, probs_vector = predict_image(model, img)
+                with img_col:
+                    # Картинка та індекс зліва
+                    img = load_image(selected_row["image_path"])
+                    if img:
+                        # Трохи зменшимо ширину, щоб ідеально вписалося
+                        st.image(img, width=200)
+                    st.caption(f"**Global Index:** `{global_idx}`")
 
-            col_res1, col_res2 = st.columns(2)
+                with info_col:
+                    # Текстові блоки та прогрес-бар праворуч
+                    st.info(
+                        f"**True Value:** {config['classes'][selected_row['true_label']]}"
+                    )
 
-            with col_res1:
-                st.subheader("Model Decision")
-                st.image(img, caption="Uploaded Image", use_container_width=True)
-                st.success(
-                    f"**Prediction:** {config['classes'][pred_idx]} ({conf:.2%})"
-                )
-
-                # Графік розподілу ймовірностей (вимога Part 4)
-                prob_df = pd.DataFrame(
-                    {
-                        "Class": config["classes"],
-                        "Probability": probs_vector.cpu().numpy(),
-                    }
-                ).sort_values(by="Probability", ascending=True)
-
-                fig_probs = px.bar(
-                    prob_df,
-                    x="Probability",
-                    y="Class",
-                    orientation="h",
-                    title="Confidence Score per Class",
-                    color="Probability",
-                    color_continuous_scale="Blues",
-                )
-                fig_probs.update_layout(showlegend=False, height=350)
-                st.plotly_chart(fig_probs, use_container_width=True)
-
-            with col_res2:
-                st.subheader("Visual Explanation (Grad-CAM)")
-                with st.spinner("Generating heatmap..."):
-                    heatmap = run_gradcam(model, tensor)
-                    if heatmap is not None:
-                        st.image(
-                            heatmap,
-                            caption="Grad-CAM Heatmap",
-                            use_container_width=True,
-                        )
-                        st.info(
-                            "💡 Червоні зони показують області, на основі яких модель прийняла рішення."
+                    if selected_row["true_label"] == selected_row["pred_label"]:
+                        st.success(
+                            f"**Prediction:** {config['classes'][selected_row['pred_label']]} (Correct)"
                         )
                     else:
-                        st.error("Grad-CAM generation failed.")
+                        st.error(
+                            f"**Prediction:** {config['classes'][selected_row['pred_label']]} (Incorrect)"
+                        )
+
+                    conf_val = selected_row["confidence"]
+                    st.write(f"**Confidence:** {conf_val:.2%}")
+                    # st.progress(conf_val)
+
+                # Повідомлення-підказка в самому низу під двома колонками
+                st.caption(
+                    "💡 Tip: Copy the Global Index to Tab 3 for detailed interpretability analysis."
+                )
+
+    # --- TAB 3: EXPLAINABILITY ---
+    with t3:
+        st.header("🧠 Model Interpretation Studio")
+
+        c_mode, c_method = st.columns(2)
+
+        with c_mode:
+            src_mode = st.radio(
+                "Data Source",
+                ["Browse by Category", "Global Index", "Upload File"],
+                horizontal=True,
+            )
+
+        with c_method:
+            method = st.radio("Explain Method", ["Grad-CAM", "LIME"], horizontal=True)
+
+        img, true_label, current_idx = None, None, "upload"
+
+        # ЛОГІКА ВИБОРУ ЗОБРАЖЕННЯ
+        f_col1, _ = st.columns([1, 2])
+        with f_col1:
+            if src_mode == "Browse by Category":
+                sel_cat = st.selectbox(
+                    "Select Class to explore", config["classes"], key="t3_cat"
+                )
+                cat_df = df_full[df_full["label"] == config["classes"].index(sel_cat)]
+                sub_idx = st.slider(f"Samples in {sel_cat}", 0, len(cat_df) - 1, 0)
+                row = cat_df.iloc[sub_idx]
+                img = load_image(row["image_path"])
+                true_label = sel_cat
+                current_idx = cat_df.index[sub_idx]
+
+            elif src_mode == "Global Index":
+                g_idx = st.number_input("Enter Index (0-9999)", 0, 9999, 0)
+                row = df_full.iloc[g_idx]
+                img = load_image(row["image_path"])
+                true_label = config["classes"][row["label"]]
+                current_idx = g_idx
+
+            elif src_mode == "Upload File":
+                f = st.file_uploader("Choose image", type=["jpg", "png", "jpeg"])
+                if f:
+                    img = Image.open(f).convert("RGB")
+
+        # ОСНОВНИЙ БЛОК АНАЛІЗУ
+        if img and model:
+            # 1. Prediction
+            p_idx, p_conf, tens, probs_vec = predict_image(model, img)
+
+            # Створюємо DF для графіка (потрібен і для UI, і для звіту)
+            prob_df = pd.DataFrame(
+                {"Class": config["classes"], "Prob": probs_vec.cpu().numpy()}
+            ).sort_values(by="Prob")
+
+            # 2. UI Layout
+            res_c1, res_c2, res_c3 = st.columns([1, 1.2, 1])
+
+            with res_c1:
+                st.subheader("Target")
+                # Використовуємо 224x224 для UI, щоб було чітко видно
+                st.image(img.resize((224, 224)), width=250)
+                render_prediction_box(config, p_idx, p_conf, true_label)
+
+            with res_c2:
+                st.subheader("Probabilities")
+                render_probability_chart(config["classes"], probs_vec)
+
+            with res_c3:
+                st.subheader("Explanation")
+                with st.spinner(f"Running {method}..."):
+                    if method == "Grad-CAM":
+                        explanation_data = run_gradcam(model, tens, (224, 224))
+                    else:
+                        # LIME уже повертає 224x224 в нашій останній версії
+                        explanation_data = run_lime(model, img)
+
+                    st.image(explanation_data, width=250, caption=f"{method} View")
+
+            # 3. КНОПКА ЗАВАНТАЖЕННЯ ЗВІТУ
+            st.divider()
+            report_btn_col, _ = st.columns([1, 3])
+            with report_btn_col:
+                report_bytes = create_report_image(
+                    img.resize((224, 224)),  # Фото у звіті буде чітким
+                    explanation_data,
+                    config["classes"][p_idx],
+                    p_conf,
+                    selected_run_name,
+                    info,
+                    method,
+                    prob_df,
+                )
+                st.download_button(
+                    label="📥 Download Analytical Report",
+                    data=report_bytes,
+                    file_name=f"report_idx_{current_idx}_{method}.png",
+                    mime="image/png",
+                )
 
 
 if __name__ == "__main__":
