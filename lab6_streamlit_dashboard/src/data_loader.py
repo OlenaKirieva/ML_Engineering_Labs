@@ -11,7 +11,7 @@ from PIL import Image
 
 logger = logging.getLogger(__name__)
 
-
+@st.cache_data # <--- Це змусить Streamlit тримати таблицю в оперативній пам'яті
 def prepare_test_data_locally():
     """Завантажує та готує 10,000 тест-картинок."""
     save_dir = Path("data_cache")

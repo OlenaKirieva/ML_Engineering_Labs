@@ -111,10 +111,18 @@ def create_report_image(
 
     # 2. Пояснення (Grad-CAM або LIME)
     ax2 = fig.add_subplot(grid[0, 1])
-    # Перевірка типу даних (LIME повертає float 0-1, Grad-CAM uint8 0-255)
-    if explanation_img.dtype != np.uint8:
-        explanation_img = (explanation_img * 255).astype(np.uint8)
-    ax2.imshow(explanation_img)
+
+    if explanation_img is not None:
+        if hasattr(explanation_img, 'dtype') and explanation_img.dtype != np.uint8:
+            explanation_img = (explanation_img * 255).astype(np.uint8)
+        ax2.imshow(explanation_img)
+    else:
+        ax2.text(0.5, 0.5, "Explanation Failed", ha='center')
+
+    # # Перевірка типу даних (LIME повертає float 0-1, Grad-CAM uint8 0-255)
+    # if explanation_img.dtype != np.uint8:
+    #     explanation_img = (explanation_img * 255).astype(np.uint8)
+    # ax2.imshow(explanation_img)
     ax2.set_title(f"Explanation ({method_name})", fontsize=12, fontweight="bold")
     ax2.axis("off")
 
